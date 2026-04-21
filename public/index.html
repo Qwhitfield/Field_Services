@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Site Losing Leads? — QAMW Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0a0a0a;--white:#f5f2ec;--accent:#e8521a;--accent2:#f0b429;
+  --mid:#161616;--border:#2a2a2a;--muted:#5a5a5a;--green:#2d9e6b;
+}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh}
+.app{max-width:680px;margin:0 auto;padding:48px 24px 64px}
+
+.header{margin-bottom:36px}
+.brand{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.headline{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;letter-spacing:1px}
+.headline span{color:var(--accent)}
+.sub{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.7;font-family:'DM Mono',monospace;max-width:500px}
+
+.form-section{background:var(--mid);border:1px solid var(--border);padding:28px;margin-bottom:24px}
+.field{margin-bottom:20px}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px}
+.field input{width:100%;background:#0f0f0f;border:1px solid var(--border);color:var(--white);font-family:'DM Mono',monospace;font-size:13px;padding:13px 14px;outline:none;transition:border-color .2s}
+.field input:focus{border-color:var(--accent)}
+.field input::placeholder{color:#333}
+
+.software-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sw-option{background:#0f0f0f;border:1px solid var(--border);padding:12px 8px;cursor:pointer;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;transition:all .2s;user-select:none;line-height:1.3}
+.sw-option:hover{border-color:#444;color:var(--white)}
+.sw-option.selected{border-color:var(--accent);color:var(--accent);background:#1a0f0a}
+
+.analyze-btn{width:100%;background:var(--accent);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;padding:18px;border:none;cursor:pointer;transition:all .2s;margin-top:4px}
+.analyze-btn:hover:not(:disabled){background:#ff6633}
+.analyze-btn:disabled{background:#3a2010;color:#5a3020;cursor:not-allowed}
+
+.loading{display:none;padding:48px 0;text-align:center}
+.loading.active{display:block}
+.loader-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:16px}
+.loader-bar{width:100%;height:2px;background:var(--border);overflow:hidden;margin-bottom:20px}
+.loader-fill{height:100%;background:var(--accent);animation:scan 2.5s ease-in-out infinite}
+@keyframes scan{0%{width:0%}50%{width:75%}100%{width:95%}}
+.loader-steps{display:flex;flex-direction:column;gap:8px;align-items:flex-start;display:inline-flex}
+.loader-step{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);opacity:0;transition:opacity .4s;text-align:left}
+.loader-step.visible{opacity:1;color:var(--green)}
+
+.results{display:none}
+.results.active{display:block}
+.results-header{margin-bottom:24px}
+.results-domain{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:6px;text-transform:uppercase}
+.results-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px}
+.results-title span{color:var(--accent2)}
+
+.leak-banner{background:#0f0a06;border:1px solid #3a2a10;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.leak-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.leak-amount{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--accent2);line-height:1}
+.leak-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px}
+
+.finding{background:var(--mid);border:1px solid var(--border);border-left:3px solid var(--accent);padding:22px;margin-bottom:12px}
+.finding-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:10px}
+.finding-meta{flex:1}
+.finding-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+.finding-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--white)}
+.finding-dollar{text-align:right;flex-shrink:0}
+.finding-dollar-amount{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:var(--accent2);line-height:1}
+.finding-dollar-label{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.finding-body{font-size:13px;color:#b0aba3;line-height:1.75;margin-bottom:10px}
+.finding-basis{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);border-left:2px solid var(--border);padding-left:10px;line-height:1.5;margin-bottom:10px}
+.finding-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:3px 8px;letter-spacing:1px;text-transform:uppercase}
+.tag-quick_win{background:#1a2a1a;color:var(--green);border:1px solid #2d4a2d}
+.tag-system_fix{background:#1a1a2a;color:#7a8aff;border:1px solid #2a2a4a}
+.tag-revenue_leak{background:#2a1a0a;color:var(--accent2);border:1px solid #4a3a1a}
+
+.locked-finding{background:var(--mid);border:1px solid var(--border);border-left:3px solid #333;padding:22px;margin-bottom:24px;position:relative;overflow:hidden;min-height:140px}
+.locked-blur{filter:blur(7px);pointer-events:none;user-select:none;opacity:0.45}
+.locked-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.lock-icon{width:32px;height:32px;border:1px solid var(--muted);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.lock-icon svg{width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:1.5}
+.lock-label{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;color:var(--muted)}
+
+.cta-block{background:#110a06;border:1px solid var(--accent);padding:28px;margin-bottom:24px;text-align:center}
+.cta-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.cta-headline{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;margin-bottom:10px}
+.cta-sub{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:20px;line-height:1.7}
+.cta-btn{display:inline-block;background:var(--accent);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;padding:15px 36px;text-decoration:none;transition:background .2s}
+.cta-btn:hover{background:#ff6633}
+
+.reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;padding:10px 18px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.reset-btn:hover{border-color:var(--white);color:var(--white)}
+
+.error-msg{background:#1a0a0a;border:1px solid #4a1a1a;padding:16px;font-family:'DM Mono',monospace;font-size:11px;color:#e05050;display:none;margin-bottom:16px;line-height:1.6}
+.error-msg.active{display:block}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <div class="brand">QAMW Consulting — Free Website Review</div>
+    <div class="headline">Is Your Site <span>Losing</span> Leads?</div>
+    <div class="sub">Drop in your URL and tell us what software you run. We'll scan for missed revenue opportunities in under 60 seconds.</div>
+  </div>
+
+  <div id="form-section" class="form-section">
+    <div class="field">
+      <label>Your website URL</label>
+      <input type="text" id="url-input" placeholder="https://yourhvaccompany.com" />
+    </div>
+    <div class="field">
+      <label>Your field service software</label>
+      <div class="software-grid">
+        <div class="sw-option" data-val="ServiceTitan">ServiceTitan</div>
+        <div class="sw-option" data-val="Jobber">Jobber</div>
+        <div class="sw-option" data-val="Housecall Pro">Housecall Pro</div>
+        <div class="sw-option" data-val="ServiceM8">ServiceM8</div>
+        <div class="sw-option" data-val="Buildertrend">Buildertrend</div>
+        <div class="sw-option" data-val="Other / Not Sure">Other / Not sure</div>
+      </div>
+    </div>
+    <div id="error-msg" class="error-msg"></div>
+    <button class="analyze-btn" id="analyze-btn" disabled>Analyze My Site</button>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loader-label">Scanning your site...</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <div class="loader-steps">
+      <div class="loader-step" id="step1">✓ Reading your site structure</div>
+      <div class="loader-step" id="step2">✓ Checking lead capture setup</div>
+      <div class="loader-step" id="step3">✓ Identifying booking friction</div>
+      <div class="loader-step" id="step4">✓ Cross-referencing your software stack</div>
+    </div>
+  </div>
+
+  <div class="results" id="results">
+    <div class="results-header">
+      <div class="results-domain" id="results-domain"></div>
+      <div class="results-title">We found <span>3 opportunities</span></div>
+    </div>
+
+    <div class="leak-banner" id="leak-banner">
+      <div>
+        <div class="leak-label">Estimated monthly revenue leak</div>
+        <div class="leak-sub">Across all 3 findings — conservative estimate</div>
+      </div>
+      <div>
+        <div class="leak-amount" id="leak-amount">—</div>
+      </div>
+    </div>
+
+    <div id="finding-1" class="finding"></div>
+    <div id="finding-2" class="finding"></div>
+
+    <div class="locked-finding">
+      <div class="locked-blur" id="finding-3-blur">
+        <div class="finding-num">OPPORTUNITY 03</div>
+        <div class="finding-title">Loading...</div>
+        <div class="finding-body">This finding reveals a deeper revenue visibility issue that's common across your industry. Book a call to get the full breakdown and a specific fix plan.</div>
+      </div>
+      <div class="locked-overlay">
+        <div class="lock-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div class="lock-label">Opportunity 03 — Unlocked on your call</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">Want the full picture?</div>
+      <div class="cta-headline">Get All 3 Findings + A Fix Plan</div>
+      <div class="cta-sub">20 minutes. I'll walk through what I found, what it's costing you,<br>and exactly what to do about it — no pitch deck, no fluff.</div>
+      <a href="https://calendly.com/quinita17/linkedin-book-a-call" target="_blank" class="cta-btn">Book Your Free Call</a>
+    </div>
+
+    <button class="reset-btn" id="reset-btn">← Analyze Another Site</button>
+  </div>
+
+</div>
+<script>
+let selectedSoftware = '';
+
+document.querySelectorAll('.sw-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.sw-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedSoftware = opt.dataset.val;
+    checkReady();
+  });
+});
+
+const urlInput = document.getElementById('url-input');
+const analyzeBtn = document.getElementById('analyze-btn');
+urlInput.addEventListener('input', checkReady);
+
+function checkReady() {
+  analyzeBtn.disabled = !(urlInput.value.trim().length > 5 && selectedSoftware);
+}
+
+analyzeBtn.addEventListener('click', runAnalysis);
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  document.getElementById('form-section').style.display = 'block';
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('error-msg').classList.remove('active');
+  urlInput.value = '';
+  selectedSoftware = '';
+  document.querySelectorAll('.sw-option').forEach(o => o.classList.remove('selected'));
+  analyzeBtn.disabled = true;
+});
+
+function showStep(id, delay) {
+  setTimeout(() => document.getElementById(id).classList.add('visible'), delay);
+}
+
+async function runAnalysis() {
+  const url = urlInput.value.trim();
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('error-msg').classList.remove('active');
+  const loading = document.getElementById('loading');
+  loading.classList.add('active');
+  showStep('step1', 400);
+  showStep('step2', 1200);
+  showStep('step3', 2100);
+  showStep('step4', 3000);
+
+  try {
+    const res = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, software: selectedSoftware })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Analysis failed');
+    }
+
+    const data = await res.json();
+    loading.classList.remove('active');
+    loading.querySelectorAll('.loader-step').forEach(s => s.classList.remove('visible'));
+    renderResults(data);
+
+  } catch(err) {
+    loading.classList.remove('active');
+    document.getElementById('form-section').style.display = 'block';
+    const errEl = document.getElementById('error-msg');
+    errEl.textContent = err.message;
+    errEl.classList.add('active');
+  }
+}
+
+function renderResults(data) {
+  document.getElementById('results-domain').textContent = (data.domain || '').toUpperCase();
+
+  if (data.estimated_monthly_leak) {
+    document.getElementById('leak-amount').textContent = data.estimated_monthly_leak;
+  }
+
+  const findings = data.findings || [];
+  [0, 1].forEach(i => {
+    const f = findings[i];
+    if (!f) return;
+    document.getElementById(`finding-${i+1}`).innerHTML = `
+      <div class="finding-top">
+        <div class="finding-meta">
+          <div class="finding-num">OPPORTUNITY 0${i+1}</div>
+          <div class="finding-title">${f.title}</div>
+        </div>
+        ${f.monthly_loss ? `<div class="finding-dollar">
+          <div class="finding-dollar-amount">${f.monthly_loss}</div>
+          <div class="finding-dollar-label">est. monthly loss</div>
+        </div>` : ''}
+      </div>
+      <div class="finding-body">${f.body}</div>
+      ${f.loss_basis ? `<div class="finding-basis">${f.loss_basis}</div>` : ''}
+      <span class="finding-tag tag-${f.tag}">${f.tag.replace('_',' ')}</span>
+    `;
+  });
+
+  const f3 = findings[2];
+  if (f3) {
+    document.getElementById('finding-3-blur').innerHTML = `
+      <div class="finding-top">
+        <div class="finding-meta">
+          <div class="finding-num">OPPORTUNITY 03</div>
+          <div class="finding-title">${f3.title}</div>
+        </div>
+        ${f3.monthly_loss ? `<div class="finding-dollar">
+          <div class="finding-dollar-amount">${f3.monthly_loss}</div>
+          <div class="finding-dollar-label">est. monthly loss</div>
+        </div>` : ''}
+      </div>
+      <div class="finding-body">${f3.body}</div>
+      ${f3.loss_basis ? `<div class="finding-basis">${f3.loss_basis}</div>` : ''}
+      <span class="finding-tag tag-${f3.tag}">${f3.tag.replace('_',' ')}</span>
+    `;
+  }
+
+  document.getElementById('results').classList.add('active');
+}
+</script>
+</body>
+</html>
