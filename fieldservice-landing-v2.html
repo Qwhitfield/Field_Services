@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop Losing Jobs to Missed Calls | AI for Field Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --charcoal: #1A1A18;
+    --sage: #3D6B52;
+    --sage-mid: #2E5240;
+    --sage-light: #EBF2ED;
+    --cream: #F9F7F2;
+    --warm-gray: #555550;
+    --border: rgba(26,26,24,0.1);
+    --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; font-size: 16px; }
+
+  /* NAV */
+  nav { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--charcoal); }
+  .nav-logo em { font-style: italic; color: var(--sage); }
+  .btn-primary { background: var(--sage); color: var(--white); text-decoration: none; font-size: 14px; font-weight: 600; padding: 11px 22px; border-radius: 6px; display: inline-block; transition: background 0.2s, transform 0.1s; border: none; cursor: pointer; }
+  .btn-primary:hover { background: var(--sage-mid); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; padding: 13px 26px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.25); display: inline-block; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.55); }
+
+  /* HERO */
+  .hero { background: var(--charcoal); color: var(--white); padding: 5.5rem 2rem 4.5rem; text-align: center; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 1.25rem; display: block; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(38px, 6vw, 68px); line-height: 1.07; margin-bottom: 1.5rem; max-width: 820px; margin-left: auto; margin-right: auto; }
+  .hero h1 em { font-style: italic; color: var(--sage); }
+  .hero-sub { font-size: 18px; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.7; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero-proof { margin-top: 3.5rem; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+  .proof-stat .num { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--white); display: block; }
+  .proof-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.45); }
+  .proof-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+  /* SECTIONS */
+  .section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.75rem; display: block; }
+  .section-heading { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 44px); line-height: 1.12; margin-bottom: 1rem; }
+  .section-heading em { font-style: italic; color: var(--sage); }
+  .section-intro { font-size: 17px; color: var(--warm-gray); max-width: 540px; line-height: 1.7; margin-bottom: 2.5rem; }
+
+  /* OFFER BOX */
+  .offer-section { background: var(--white); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+  .offer-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  @media (max-width: 720px) { .offer-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  .what-you-get { display: flex; flex-direction: column; gap: 1rem; }
+  .get-item { display: flex; align-items: flex-start; gap: 14px; padding: 1.1rem 1.25rem; background: var(--cream); border-radius: 8px; border: 0.5px solid var(--border); }
+  .get-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage); flex-shrink: 0; margin-top: 6px; }
+  .get-item strong { font-size: 15px; font-weight: 600; display: block; margin-bottom: 2px; }
+  .get-item span { font-size: 13px; color: var(--warm-gray); line-height: 1.55; }
+
+  .offer-details { position: sticky; top: 80px; }
+  .offer-card { background: var(--charcoal); border-radius: 12px; padding: 2rem; color: var(--white); }
+  .offer-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+  .offer-card h3 { font-family: 'DM Serif Display', serif; font-size: 26px; line-height: 1.2; margin-bottom: 1.25rem; }
+  .offer-card h3 em { font-style: italic; color: var(--sage); }
+  .offer-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.75rem; }
+  .offer-bullets li { font-size: 14px; color: rgba(255,255,255,0.7); display: flex; align-items: flex-start; gap: 10px; }
+  .check { color: var(--sage); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .offer-timeline { background: rgba(61,107,82,0.18); border: 0.5px solid rgba(61,107,82,0.35); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .offer-timeline p { font-size: 13px; color: rgba(255,255,255,0.65); }
+  .offer-timeline strong { font-size: 14px; color: var(--white); display: block; margin-bottom: 2px; }
+  .offer-card .btn-primary { width: 100%; text-align: center; font-size: 15px; padding: 14px; }
+
+  /* PAIN */
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .pain-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+  .pain-marker { width: 26px; height: 26px; background: #FDECEA; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+  .x-icon { position: relative; width: 10px; height: 10px; }
+  .x-icon::before, .x-icon::after { content: ''; position: absolute; width: 100%; height: 1.5px; background: #C0392B; top: 50%; left: 0; }
+  .x-icon::before { transform: rotate(45deg); }
+  .x-icon::after { transform: rotate(-45deg); }
+  .pain-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 0.5rem; }
+  .pain-card p { font-size: 14px; color: var(--warm-gray); line-height: 1.65; }
+
+  /* MATH SECTION */
+  .math-section { background: var(--sage); color: var(--white); }
+  .math-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .math-card { background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 1.5rem; }
+  .math-trade { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.75rem; }
+  .math-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--white); line-height: 1; margin-bottom: 0.4rem; }
+  .math-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+
+  /* VIDEO */
+  .video-section { background: var(--white); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+  .video-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  @media (max-width: 720px) { .video-layout { grid-template-columns: 1fr; gap: 2rem; } }
+  .video-frame { aspect-ratio: 16/9; background: var(--charcoal); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .play-btn { width: 60px; height: 60px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s, background 0.2s; z-index: 1; }
+  .play-btn:hover { transform: scale(1.1); background: var(--sage-mid); }
+  .play-icon { width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent var(--white); margin-left: 4px; }
+  .video-caption { position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* TRADES */
+  .trades-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2rem; }
+  .trade-chip { background: var(--white); border: 1px solid var(--sage); color: var(--sage); font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 100px; letter-spacing: 0.04em; }
+
+  /* HOW IT WORKS */
+  .steps-section { background: var(--cream); border-top: 0.5px solid var(--border); }
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .step-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--sage-light); line-height: 1; margin-bottom: 0.75rem; }
+  .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 0.5rem; }
+  .step p { font-size: 14px; color: var(--warm-gray); line-height: 1.65; }
+
+  /* TRUST */
+  .trust-section { background: var(--white); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 4rem 2rem; }
+  .trust-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+  .trust-title { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.4rem; display: block; }
+  .trust-grid p { font-size: 14px; color: var(--warm-gray); line-height: 1.6; }
+
+  /* CTA */
+  .cta-section { background: var(--charcoal); padding: 6rem 2rem; text-align: center; }
+  .cta-section h2 { font-family: 'DM Serif Display', serif; font-size: clamp(30px, 4.5vw, 54px); color: var(--white); margin-bottom: 1.25rem; line-height: 1.1; }
+  .cta-section h2 em { font-style: italic; color: var(--sage); }
+  .cta-sub { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+  .calendar-placeholder { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.12); border-radius: 10px; max-width: 620px; margin: 0 auto 2.5rem; padding: 2.5rem; font-size: 13px; color: rgba(255,255,255,0.3); font-style: italic; }
+  .cta-phone { display: inline-block; font-size: 22px; font-family: 'DM Serif Display', serif; color: var(--white); text-decoration: none; margin-bottom: 1rem; }
+  .cta-phone:hover { color: var(--sage); }
+  .cta-note { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 1.25rem; }
+  .cta-note a { color: var(--sage); text-decoration: none; font-weight: 500; }
+
+  footer { background: var(--charcoal); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 1.5rem 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+  .footer-brand { font-family: 'DM Serif Display', serif; font-size: 14px; color: rgba(255,255,255,0.45); }
+  .footer-brand em { font-style: italic; color: var(--sage); }
+  .footer-note { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .hero h1 { animation: fadeUp 0.55s ease both; }
+  .hero-sub { animation: fadeUp 0.55s 0.1s ease both; }
+  .hero-ctas { animation: fadeUp 0.55s 0.2s ease both; }
+  @media (max-width: 600px) { .section { padding: 3.5rem 1.25rem; } .hero { padding: 3.5rem 1.25rem 3rem; } .proof-divider { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AI <em>for Field Services</em></div>
+  <a href="#book" class="btn-primary">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="eyebrow">HVAC · Roofing · General Contractors</span>
+  <h1>You're losing jobs<br>to <em>slow follow-up.</em><br>Let's fix that.</h1>
+  <p class="hero-sub">A done-for-you system that responds to leads instantly, books estimates automatically, and follows up until they close. Live in under a week.</p>
+  <div class="hero-ctas">
+    <a href="#book" class="btn-primary" style="font-size:15px; padding:14px 28px;">Get the System Set Up →</a>
+    <a href="#offer" class="btn-outline">See What's Included</a>
+  </div>
+  <div class="hero-proof">
+    <div class="proof-stat">
+      <span class="num">78%</span>
+      <span class="lbl">of customers hire<br>the first to respond</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <span class="num">&lt;7 days</span>
+      <span class="lbl">to go live —<br>fully configured</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <span class="num">13+ yrs</span>
+      <span class="lbl">field service<br>operations experience</span>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="section">
+  <div class="section-inner">
+    <span class="section-label">The Real Problem</span>
+    <h2 class="section-heading">You're not losing jobs<br>on price. You're losing them<br><em>on speed.</em></h2>
+    <p class="section-intro">Most contractors already have enough leads. The jobs are slipping through the cracks after they come in.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-marker"><div class="x-icon"></div></div>
+        <h3>Missed call, lost job</h3>
+        <p>You're on a job site. The phone rings. They don't leave a message — they call the next HVAC company on Google.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-marker"><div class="x-icon"></div></div>
+        <h3>Leads go cold overnight</h3>
+        <p>Someone fills out a form at 9pm. By the time you see it tomorrow, three competitors have already responded.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-marker"><div class="x-icon"></div></div>
+        <h3>Estimates that never close</h3>
+        <p>You sent the bid. You meant to follow up. You got busy. The job went to the contractor who did follow up.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-marker"><div class="x-icon"></div></div>
+        <h3>Reviews you never asked for</h3>
+        <p>Happy customers don't leave reviews on their own. You did great work and have nothing to show for it online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MATH -->
+<section class="section math-section">
+  <div class="section-inner">
+    <span class="section-label" style="color:rgba(255,255,255,0.45);">The Math Is Simple</span>
+    <h2 class="section-heading" style="color:#fff;">You don't need<br><em>more leads.</em></h2>
+    <p class="section-intro" style="color:rgba(255,255,255,0.6);">You need to stop losing the ones you already have. Here's what one missed job per week costs depending on your trade.</p>
+    <div class="math-grid">
+      <div class="math-card">
+        <div class="math-trade">HVAC</div>
+        <div class="math-num">$20K+</div>
+        <div class="math-desc">missed per month from 1 lost install per week at $5K–$15K per job</div>
+      </div>
+      <div class="math-card">
+        <div class="math-trade">Roofing</div>
+        <div class="math-num">$40K+</div>
+        <div class="math-desc">missed per month from 1 lost job per week at $10K–$30K per roof</div>
+      </div>
+      <div class="math-card">
+        <div class="math-trade">General Contractors</div>
+        <div class="math-num">$50K+</div>
+        <div class="math-desc">missed per month from 1 lost remodel per week at $15K–$50K+ per project</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER / WHAT'S INCLUDED -->
+<section id="offer" class="section offer-section">
+  <div class="section-inner">
+    <div class="offer-layout">
+      <div>
+        <span class="section-label">What's Included</span>
+        <h2 class="section-heading">A complete lead<br>response system —<br><em>built for your business.</em></h2>
+        <p class="section-intro">Not a tool you have to learn. A system I configure to match how you work, your service area, and your voice.</p>
+        <div class="what-you-get">
+          <div class="get-item">
+            <div class="get-dot"></div>
+            <div>
+              <strong>Instant lead response</strong>
+              <span>New leads get a text back in seconds — day or night. No more "we'll get back to you within 24 hours."</span>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-dot"></div>
+            <div>
+              <strong>Missed call text-back</strong>
+              <span>Can't answer? The caller gets a text immediately — keeps them engaged before they call your competitor.</span>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-dot"></div>
+            <div>
+              <strong>Automated estimate booking</strong>
+              <span>Customers pick a time directly from your calendar. No phone tag. No back-and-forth.</span>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-dot"></div>
+            <div>
+              <strong>Bid follow-up sequences</strong>
+              <span>Sent a quote? The system follows up automatically — until they respond, book, or tell you to stop.</span>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-dot"></div>
+            <div>
+              <strong>Appointment reminders</strong>
+              <span>Automated reminders the day before and morning of. Fewer no-shows, fewer wasted drives.</span>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-dot"></div>
+            <div>
+              <strong>Review requests after jobs</strong>
+              <span>Job complete? A review request goes out automatically. Five-star reviews without asking every time.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-details">
+        <div class="offer-card">
+          <div class="offer-card-label">The Offer</div>
+          <h3>Done-for-you setup.<br><em>Tailored to your trade.</em></h3>
+          <ul class="offer-bullets">
+            <li><span class="check">✓</span> Full system built and configured for you</li>
+            <li><span class="check">✓</span> Customized to your trade, service area, and voice</li>
+            <li><span class="check">✓</span> Includes all 6 automations from day one</li>
+            <li><span class="check">✓</span> Works alongside your existing tools</li>
+            <li><span class="check">✓</span> Ongoing support — not a handoff and goodbye</li>
+            <li><span class="check">✓</span> You own your data and your contacts</li>
+          </ul>
+          <div class="offer-timeline">
+            <strong>Live in under 7 days.</strong>
+            <p>We talk, I build, you test it before it goes live. Fast because it's pre-built — custom because I tailor it to you.</p>
+          </div>
+          <a href="#book" class="btn-primary">Book a Call to Get Started</a>
+          <p style="font-size:12px; color:rgba(255,255,255,0.3); text-align:center; margin-top:1rem;">Setup fee + low monthly. Pricing discussed on the call.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO / WHO I AM -->
+<section class="section video-section">
+  <div class="section-inner">
+    <div class="video-layout">
+      <div>
+        <span class="section-label">Who's Behind This</span>
+        <h2 class="section-heading">Not a software<br>company. <em>A systems person</em><br>who gets it.</h2>
+        <p style="font-size:16px; color:var(--warm-gray); line-height:1.7; margin-bottom:1rem;">I've spent 13 years inside field service operations — watching leads fall through the cracks, seeing what actually costs companies jobs, and fixing the systems behind it.</p>
+        <p style="font-size:16px; color:var(--warm-gray); line-height:1.7; margin-bottom:1.5rem;">I'm not selling you software. I'm setting up a system that works, tailoring it to your business, and staying on to make sure it keeps working.</p>
+        <p style="font-size:14px; color:var(--warm-gray); line-height:1.65;"><strong style="font-weight:600;">Best fit:</strong> Contractors already running consistent jobs who want to close more of the leads they're already getting — not startups, not companies still figuring out their service.</p>
+        <div style="margin-top:2rem;">
+          <a href="#book" class="btn-primary">Let's Talk →</a>
+        </div>
+      </div>
+      <div class="video-frame">
+        <!-- Replace with: <iframe src="YOUR_VIDEO_URL" frameborder="0" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border-radius:10px;z-index:1;"></iframe> -->
+        <div class="play-btn">
+          <div class="play-icon"></div>
+        </div>
+        <div class="video-caption">2-min intro — add your video URL here</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section" style="background:var(--cream); border-top:0.5px solid var(--border);">
+  <div class="section-inner">
+    <span class="section-label">Best Fit For</span>
+    <h2 class="section-heading">Built for contractors<br><em>who care about margins.</em></h2>
+    <p class="section-intro">If you're already running jobs and getting inbound leads, this is for you. If you're still looking for your first customers, this isn't the right fit yet.</p>
+    <div class="trades-row">
+      <div class="trade-chip">HVAC</div>
+      <div class="trade-chip">Roofing</div>
+      <div class="trade-chip">General Contractors</div>
+      <div class="trade-chip">Remodelers</div>
+      <div class="trade-chip">Plumbing</div>
+      <div class="trade-chip">Landscaping</div>
+      <div class="trade-chip">Concrete</div>
+      <div class="trade-chip">Electrical</div>
+    </div>
+    <p style="margin-top:1.5rem; font-size:14px; color:var(--warm-gray);">Not sure if it's a fit? <a href="#book" style="color:var(--sage);font-weight:500;">Tell me how leads come in and I'll tell you straight.</a></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section steps-section">
+  <div class="section-inner">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-heading">Fast because it's<br><em>pre-built.</em> Custom because<br>I tailor it to you.</h2>
+    <p class="section-intro">The system is ready to go. The call is just so I can configure it to match your exact business — not hand you a login and wish you luck.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>We talk for 30 minutes</h3>
+        <p>You tell me how leads come in, what's falling through, and how your business runs. I map the system to your workflow.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>I build and configure it</h3>
+        <p>I set up every automation, customize the messages in your voice, and connect it to your calendar and existing tools.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>You test it before it goes live</h3>
+        <p>We walk through it together. You see exactly what happens when a lead comes in — no surprises.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>It runs. You work.</h3>
+        <p>You're on the job site. The system handles leads, follow-ups, reminders, and reviews — automatically, in the background.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SIGNALS -->
+<section class="trust-section">
+  <div class="trust-grid">
+    <div>
+      <span class="trust-title">13+ Years in the Field</span>
+      <p>Not a tech reseller. I've been inside field service operations — I know how these businesses actually run, not how they look on a demo call.</p>
+    </div>
+    <div>
+      <span class="trust-title">South Seattle Based</span>
+      <p>Local to the Pacific Northwest. I work with small and mid-size trade businesses, not enterprise clients with IT departments.</p>
+    </div>
+    <div>
+      <span class="trust-title">You Own Everything</span>
+      <p>Your contacts, your leads, your data — all in your account. I set it up and support it. You're never locked into me.</p>
+    </div>
+    <div>
+      <span class="trust-title">Live in Under a Week</span>
+      <p>The system is pre-built. Setup is fast because I've done this before. You're not waiting 6 weeks for a custom build.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / BOOK -->
+<section id="book" class="cta-section">
+  <h2>Ready to stop losing<br><em>good leads?</em></h2>
+  <p class="cta-sub">Book a 30-minute call. Tell me how leads come in and I'll show you exactly where jobs are slipping — and what it would take to fix it.</p>
+
+  <!-- SWAP THIS FOR YOUR CALENDAR EMBED -->
+  <div class="calendar-placeholder">
+    📅 Paste your Calendly, Cal.com, or Google Booking embed here<br>
+    <span style="font-size:11px; display:block; margin-top:6px; font-family:monospace;">&lt;!-- e.g. &lt;iframe src="https://calendly.com/yourname/30min" width="100%" height="650" frameborder="0"&gt;&lt;/iframe&gt; --&gt;</span>
+  </div>
+
+  <div>
+    <a href="tel:+1XXXXXXXXXX" class="cta-phone">(XXX) XXX-XXXX</a><br>
+    <span style="font-size:13px; color:rgba(255,255,255,0.35);">Call or text — I respond the same day</span>
+  </div>
+  <p class="cta-note">Prefer email? <a href="mailto:you@qamwconsulting.com">you@qamwconsulting.com</a></p>
+</section>
+
+<footer>
+  <div class="footer-brand">AI <em>for Field Services</em> &nbsp;·&nbsp; QAMW Consulting</div>
+  <div class="footer-note">South Seattle, WA &nbsp;·&nbsp; aiforfieldservices.com</div>
+</footer>
+
+</body>
+</html>
