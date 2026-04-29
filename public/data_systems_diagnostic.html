@@ -620,7 +620,7 @@ function buildPrompt() {
 
   var prompt = buildPrompt();
 
- fetch('/api/diagnose', {
+ fetch('/.netlify/functions/diagnose', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ prompt: prompt })
