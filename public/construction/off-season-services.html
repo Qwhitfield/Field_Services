@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AITextsBack - Stop Relying on Gift Cards to Fill Your Off-Season</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1a1a4e 0%, #2d1b4e 50%, #1a1a4e 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        
+        .eyebrow {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            color: #a5b4fc;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        
+        h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 22px;
+            color: #c7d2fe;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 0;
+            margin: 60px 0;
+            border-radius: 20px;
+        }
+        
+        .problem-section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #fca5a5;
+        }
+        
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .pain-point {
+            background: rgba(248, 113, 113, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 113, 113, 0.2);
+        }
+        
+        .pain-point h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fca5a5;
+        }
+        
+        .pain-point p {
+            color: #e0e7ff;
+            font-size: 16px;
+        }
+        
+        .gift-card-callout {
+            text-align: center;
+            padding: 40px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .gift-card-callout h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #c4b5fd;
+        }
+        
+        .gift-card-callout p {
+            font-size: 18px;
+            color: #e0e7ff;
+            line-height: 1.6;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            padding: 60px 0;
+        }
+        
+        .solution-section h2 {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #a5f3fc 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .solution-intro {
+            text-align: center;
+            font-size: 20px;
+            color: #c7d2fe;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature {
+            background: rgba(139, 92, 246, 0.15);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #c4b5fd;
+        }
+        
+        .feature p {
+            color: #e0e7ff;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Results Section */
+        .results-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            padding: 60px 0;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+        
+        .results-section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a5f3fc 0%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #c7d2fe;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .testimonial-text {
+            font-size: 20px;
+            font-style: italic;
+            color: #e0e7ff;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-size: 16px;
+            color: #c4b5fd;
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .final-cta h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            color: #c7d2fe;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .benefit-list {
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: left;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+        }
+        
+        .check-icon {
+            color: #a5f3fc;
+            font-size: 24px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        .benefit-item p {
+            color: #e0e7ff;
+            font-size: 16px;
+            margin: 0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #a5b4fc;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">AI<span>TextsBack</span></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="eyebrow">For HVAC, Plumbing, Painting, Roofing & Construction</div>
+            <h1>Your Calendar Shouldn't Go<br>Empty Every Off-Season</h1>
+            <p>Turn your past clients into predictable, year-round revenue with automated seasonal maintenance services—no discounts, no awkward follow-ups, no hoping the phone rings.</p>
+            <a href="#form" class="cta-button">Get the Free Seasonal Services Guide</a>
+        </div>
+    </section>
+
+    <section class="problem-section">
+        <div class="container">
+            <h2>Sound Familiar?</h2>
+            <div class="pain-points">
+                <div class="pain-point">
+                    <h3>📉 The Off-Season Drought</h3>
+                    <p>Summer's booked solid, but winter? Crickets. You watch your revenue drop 40-60% and just... wait it out. There's gotta be a better way.</p>
+                </div>
+                <div class="pain-point">
+                    <h3>💸 Chasing New Clients Constantly</h3>
+                    <p>Every job feels like starting from scratch. You're spending on ads, competing on price, convincing strangers to trust you—when you've already got hundreds of happy past clients.</p>
+                </div>
+                <div class="pain-point">
+                    <h3>📞 The Follow-Up You Never Make</h3>
+                    <p>You know you should reach out to last year's customers for maintenance. You know they'd probably book. But you're too busy during peak season and forget when things slow down.</p>
+                </div>
+                <div class="pain-point">
+                    <h3>⭐ Reviews That Never Happen</h3>
+                    <p>Your customers love your work. But asking for reviews feels awkward, and by the time you remember, they've moved on. Your competitors with more reviews are getting the calls.</p>
+                </div>
+            </div>
+            
+            <div class="gift-card-callout">
+                <h3>Most contractors try one-off promotions or just accept the slow season...</h3>
+                <p>Gift cards, seasonal discounts, lowering prices—anything to fill the gaps. But these are band-aids that train customers to wait for deals and don't build the predictable, recurring revenue your business needs. <strong>There's a smarter way.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution-section">
+        <div class="container">
+            <h2>What If Your Past Clients Just... Kept Booking?</h2>
+            <p class="solution-intro">Imagine waking up to appointments already on your calendar. Not from cold leads. Not from discount seekers. From happy past clients who actually need the seasonal maintenance you offer.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Automated Client Re-Engagement</h3>
+                    <p>We track every job you complete. When it's time for seasonal maintenance—AC tune-ups in spring, gutter cleaning in fall—we automatically email your past clients with personalized reminders. They click and book. You show up and work.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📅</div>
+                    <h3>Smart Seasonal Campaigns</h3>
+                    <p>HVAC? We remind last year's customers about pre-season maintenance. Painting? Power washing season emails go out automatically. Roofing? Fall inspection reminders before winter hits. All customized to your services, all automatic.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Reviews That Actually Happen</h3>
+                    <p>After every job—yes, every single one—we automatically text AND email your customer requesting a review. Within 24 hours, when they're still excited. No awkward asks. No forgotten follow-ups. Just steady 5-star reviews building your reputation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section">
+        <div class="container">
+            <h2>The Numbers Don't Lie</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">3-5x</div>
+                    <div class="stat-label">More Reviews</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15-30%</div>
+                    <div class="stat-label">Revenue Increase</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12-18%</div>
+                    <div class="stat-label">Email Booking Rate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10+hrs</div>
+                    <div class="stat-label">Saved Per Week</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="testimonial">
+            <p class="testimonial-text">"I was getting maybe one review a month if I remembered to ask. Now I'm getting 8-12 reviews monthly on autopilot. My Google rating went from 4.2 to 4.8 in three months. But the seasonal campaigns? That's when it got crazy. I'm booking jobs from customers I'd totally forgotten about."</p>
+            <p class="testimonial-author">— Mike T., HVAC Contractor</p>
+        </div>
+    </div>
+
+    <section class="final-cta" id="form">
+        <div class="container">
+            <h2>Ready to Fill Your Off-Season?</h2>
+            <p>Download our free guide: <strong>"70+ Seasonal Services to Keep Your Calendar Full Year-Round"</strong></p>
+            
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Seasonal maintenance ideas</strong> for HVAC, Plumbing, Painting, Roofing, Construction, Electrical & Landscaping</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Quarter-by-quarter breakdown</strong> so you always know what to offer next</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Pricing strategies</strong> and package ideas to maximize revenue</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="check-icon">✓</span>
+                    <p><strong>Implementation roadmap</strong> for turning this into automated, recurring revenue</p>
+                </div>
+            </div>
+            
+            <div style="max-width: 600px; margin: 40px auto;">
+                <script async data-uid="c8563d2e20" src="https://mbg-consulting.kit.com/c8563d2e20/index.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AITextsBack. Helping home services businesses grow smarter.</p>
+        </div>
+    </footer>
+</body>
+</html>
