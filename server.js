@@ -4,6 +4,41 @@ const cors = require('cors');
 const Anthropic = require('@anthropic-ai/sdk');
 const path = require('path');
 const fetch = require('node-fetch');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+function sendLeadEmail(url, software, data) {
+  const findings = (data.findings || []).map((f, i) => `
+<b>Opportunity ${i + 1}: ${f.title}</b><br>
+${f.body}<br>
+<i>${f.loss_basis}</i><br>
+Est. monthly loss: ${f.monthly_loss} &nbsp;|&nbsp; Tag: ${(f.tag || '').replace('_', ' ')}
+`).join('<hr style="border:none;border-top:1px solid #ddd;margin:12px 0">');
+
+  const msg = {
+    to: process.env.CONTACT_EMAIL,
+    from: process.env.SENDGRID_FROM,
+    subject: `New Lead Analyzer Submission — ${data.domain || url}`,
+    html: `
+<h2 style="font-family:sans-serif">New Lead Analyzer Submission</h2>
+<table style="font-family:sans-serif;font-size:14px;border-collapse:collapse">
+  <tr><td style="padding:4px 12px 4px 0;color:#888">Website</td><td><a href="${url}">${url}</a></td></tr>
+  <tr><td style="padding:4px 12px 4px 0;color:#888">Software</td><td>${software}</td></tr>
+  <tr><td style="padding:4px 12px 4px 0;color:#888">Est. Monthly Leak</td><td><b>${data.estimated_monthly_leak}</b></td></tr>
+</table>
+<hr style="border:none;border-top:2px solid #e8521a;margin:20px 0">
+<div style="font-family:sans-serif;font-size:14px;line-height:1.7">${findings}</div>
+`,
+  };
+
+  sgMail
+    .send(msg)
+    .then(() => console.log('Lead email sent'))
+    .catch(error => {
+      console.error('Email error:', error);
+      console.log(JSON.stringify(error.response.body.errors, null, 2));
+    });
+}
 
 const app = express();
 app.use(cors());
@@ -137,6 +172,7 @@ They use: ${software}${siteContext}
 
 Give me 3 specific findings with dollar estimates based on what you can observe about this specific business. JSON only, no other text.`;
 
+  let parsed;
   try {
     const message = await client.messages.create({
       model: 'claude-opus-4-5',
@@ -147,13 +183,32 @@ Give me 3 specific findings with dollar estimates based on what you can observe 
 
     const raw = message.content[0].text;
     const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = ensureNoZeroValues(JSON.parse(clean));
+    parsed = ensureNoZeroValues(JSON.parse(clean));
     res.json(parsed);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Analysis failed. Check your API key and try again.' });
+    return;
+  }
+
+  sendLeadEmail(url, software, parsed);
+});
+app.post('/api/diagnose', async (req, res) => {
+  try {
+    const message = await client.messages.create({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: 'You are a systems diagnostics consultant for QAMW Consulting. Review answers and produce a clear honest practical diagnosis. Write like a peer. Direct, short sentences, no jargon, no fluff. Return ONLY valid JSON with these exact keys: readiness_score (1-10 number as string), readiness_label (one of: Critical, Needs Work, Getting There, Strong Foundation), top_gap (one sentence), gap_explanation (2-3 sentences referencing their answers), priority_1 (object with title and detail), priority_2 (object with title and detail), priority_3 (object with title and detail), ai_readiness (one blunt sentence), honest_take (2-3 sentences of straight talk). No markdown, no backticks, just raw JSON.',
+      messages: [{ role: 'user', content: req.body.prompt }]
+    });
+
+    const raw = message.content[0].text;
+    const parsed = JSON.parse(raw.trim());
+    res.json(parsed);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Diagnosis failed.' });
   }
 });
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Running at http://localhost:${PORT}`));
