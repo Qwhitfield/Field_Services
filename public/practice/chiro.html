@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Practice Leaking New Patients? | QAMW Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --charcoal: #2C2C2C;
+    --sage: #7A9E7E;
+    --cream: #F5F0E8;
+    --sage-dark: #5C7E60;
+    --sage-light: #A8C4AB;
+    --cream-dark: #E8E0D0;
+    --accent: #C4853A;
+    --white: #FAFAF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--charcoal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(122,158,126,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(196,133,58,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 6vw, 68px);
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage-light);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 48px;
+  }
+
+  .hero-sub strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .cta-primary {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 18px 40px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .cta-primary2 {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 18px 40px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+
+  .cta-primary:hover {
+    background: var(--sage-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-stat-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(245,240,232,0.1);
+    flex-wrap: wrap;
+  }
+
+  .hero-stat span {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--sage-light);
+  }
+
+  .hero-stat p {
+    font-size: 13px;
+    color: rgba(245,240,232,0.5);
+    margin-top: 4px;
+    font-weight: 300;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 80px 40px;
+  }
+
+  .section-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* PROBLEM SECTION */
+  .problem {
+    background: var(--white);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 20px;
+  }
+
+  .problem h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.2;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 48px;
+    background: var(--cream-dark);
+  }
+
+  .problem-card {
+    background: var(--white);
+    padding: 32px 28px;
+  }
+
+  .problem-card .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--cream-dark);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .problem-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--charcoal);
+  }
+
+  .problem-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* WHAT YOU GET */
+  .what-you-get {
+    background: var(--cream);
+  }
+
+  .what-you-get h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .what-you-get .intro {
+    font-size: 17px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  .journey-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .journey-steps::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--sage-light);
+  }
+
+  .journey-step {
+    display: flex;
+    gap: 28px;
+    padding: 28px 0;
+    position: relative;
+  }
+
+  .step-dot {
+    width: 48px;
+    height: 48px;
+    background: var(--charcoal);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-content h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-top: 10px;
+  }
+
+  .step-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* AUDIT SCORECARD */
+  .audit {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .audit h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: var(--cream);
+  }
+
+  .audit .intro {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.65);
+    margin-bottom: 48px;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .audit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .audit-q {
+    background: rgba(245,240,232,0.04);
+    border-left: 3px solid transparent;
+    padding: 24px 28px;
+    transition: all 0.2s ease;
+  }
+
+  .audit-q.answered {
+    border-left-color: var(--sage);
+    background: rgba(122,158,126,0.08);
+  }
+
+  .audit-q-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .audit-q-num {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .answer-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .answer-btn {
+    background: transparent;
+    border: 1px solid rgba(245,240,232,0.2);
+    color: rgba(245,240,232,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .answer-btn:hover {
+    border-color: var(--sage);
+    color: var(--cream);
+  }
+
+  .answer-btn.selected {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: var(--charcoal);
+    font-weight: 600;
+  }
+
+  .audit-submit {
+    margin-top: 32px;
+    display: none;
+  }
+
+  .audit-submit.visible {
+    display: block;
+  }
+
+  /* RESULTS */
+  .results-panel {
+    display: none;
+    margin-top: 16px;
+  }
+
+  .results-panel.visible {
+    display: block;
+  }
+
+  .score-display {
+    background: rgba(245,240,232,0.05);
+    padding: 40px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .score-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--sage-light);
+  }
+
+  .score-label {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-top: 8px;
+  }
+
+  .score-interpretation {
+    font-size: 22px;
+    font-family: 'DM Serif Display', serif;
+    color: var(--cream);
+    margin-top: 16px;
+  }
+
+  .score-detail {
+    font-size: 15px;
+    color: rgba(245,240,232,0.65);
+    margin-top: 12px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .gap-list {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .gap-item {
+    background: rgba(196,133,58,0.12);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    font-size: 14px;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.6;
+  }
+
+  .gap-item strong {
+    color: var(--cream);
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--sage);
+    padding: 80px 40px;
+  }
+
+  .cta-section .section-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .cta-copy h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 480px;
+  }
+
+  .cta-copy p {
+    font-size: 16px;
+    color: rgba(44,44,44,0.7);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 420px;
+  }
+
+  .cta-box {
+    background: var(--cream);
+    padding: 40px;
+    min-width: 300px;
+    flex-shrink: 0;
+  }
+
+  .cta-box p {
+    font-size: 13px;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .cta-box input {
+    width: 100%;
+    background: rgba(245,240,232,0.07);
+    border: 1px solid rgba(245,240,232,0.15);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .cta-box input::placeholder { color: rgba(245,240,232,0.3); }
+  .cta-box input:focus { border-color: var(--sage); }
+
+  .cta-box button {
+    width: 100%;
+    background: var(--sage);
+    border: none;
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 16px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+    transition: background 0.2s;
+  }
+
+  .cta-box button:hover { background: var(--sage-light); }
+
+  .no-pitch {
+    font-size: 12px;
+    color: rgba(245,240,232,0.3) !important;
+    margin-top: 14px !important;
+    text-align: center;
+  }
+  .no-pitch2 {
+    font-size: 20px;
+    color: var(--charcoal) !important;
+    margin-top: 14px !important;
+    text-align: Left;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--white);
+  }
+
+  .about-inner {
+    display: flex;
+    gap: 64px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .about-text {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .about-text h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .about-text p strong {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+
+  .about-creds {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 240px;
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    background: var(--cream);
+  }
+
+  .cred-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--sage);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .cred-item p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .cred-item p strong {
+    color: var(--charcoal);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 32px 40px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 0.5px;
+  }
+
+  footer span {
+    color: var(--sage);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-inner > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-inner > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero-inner > *:nth-child(5) { animation-delay: 0.7s; }
+
+  /* VIDEO SECTION */
+  .video-section {
+    background: var(--white);
+    padding: 80px 40px;
+  }
+
+  .video-section .section-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .video-section .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .video-section .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--sage-dark);
+  }
+
+  .video-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .video-section .section-intro {
+    font-size: 16px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    background: #111;
+    border: 1px solid var(--cream-dark);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .video-caption {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .video-meta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 60px 24px; }
+    .hero { padding: 60px 24px; }
+    .hero-stat-row { gap: 32px; }
+    .cta-section .section-inner { flex-direction: column; }
+    .audit-q { padding: 20px 16px; }
+    .score-display { padding: 28px 20px; }
+    .video-section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">QAMW Consulting · Free Practice Audit</div>
+    <h1>Your website is open.<br><em>But is anyone actually booking?</em></h1>
+    <p class="hero-sub">
+      Most independent practices have a website. Very few have a <strong>patient conversion system</strong> — one that works at 10pm on a Sunday without anyone touching it. This audit shows you exactly where the gaps are.
+    </p>
+    <button class="cta-primary" onclick="document.getElementById('audit-section').scrollIntoView({behavior:'smooth'})">
+      Take the Free Audit →
+    </button>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <span>10</span>
+        <p>Questions. 5 minutes.</p>
+      </div>
+      <div class="hero-stat">
+        <span>Free</span>
+        <p>No call required to get results</p>
+      </div>
+      <div class="hero-stat">
+        <span>Instant</span>
+        <p>Score + gap summary on screen</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-inner">
+    <div class="section-label">The real problem</div>
+    <h2>New patients visit your site. Then they disappear. Here's why.</h2>
+    <p style="font-size:16px;font-weight:300;color:#555;line-height:1.8;max-width:620px;">
+      It's not your clinical work. It's not your reputation. It's the gap between someone finding you online and actually showing up at your door — and what happens (or doesn't happen) in between.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="num">01</div>
+        <h3>Friction at the front door</h3>
+        <p>If booking takes more than two clicks or requires a phone call during business hours, you're losing people who wanted to come in.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">02</div>
+        <h3>No system after the inquiry</h3>
+        <p>Someone fills out your contact form on a Tuesday night. Who follows up? When? If the answer is "we try to call them back," you're operating on hope.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">03</div>
+        <h3>Invisible data</h3>
+        <p>You don't know which pages are killing conversions, which sources bring the best patients, or where people bail. So nothing gets fixed.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">04</div>
+        <h3>Manual everything</h3>
+        <p>Your front desk is doing work that systems should be doing automatically — confirmations, reminders, intake forms, follow-up. That's expensive and fragile.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="video">
+  <div class="section-inner">
+    <div class="section-eyebrow">Watch This First</div>
+    <h2>The real reason patients go quiet after they find you.</h2>
+    <p class="section-intro">
+      It's not your marketing. It's not your headcount. It's the timing gap — the 5–10 minute window after someone decides to book with you where you either capture them or lose them. This video explains exactly what that looks like and how to close it.
+    </p>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/lFx2ektUB9E"
+        title="The Intention Window — Why Patients Go Quiet After They Find You"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-caption">
+      <div class="video-meta">Under 4 minutes</div>
+      <div class="video-meta">No signup to watch</div>
+      <div class="video-meta">Then take the audit below</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what-you-get">
+  <div class="section-inner">
+    <div class="section-label">What this audit does</div>
+    <h2>We follow the patient journey from click to chair.</h2>
+    <p class="intro">This isn't about whether your website looks good. It's about whether the entire path from "I found you online" to "I booked an appointment" is connected, automated, and working without a human babysitting it.</p>
+    <div class="journey-steps">
+      <div class="journey-step">
+        <div class="step-dot">1</div>
+        <div class="step-content">
+          <h3>Website as a conversion tool</h3>
+          <p>Is your site set up to convert visitors, or just inform them? We look at booking entry points, friction, and clarity of next steps.</p>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-dot">2</div>
+        <div class="step-content">
+          <h3>What happens after someone reaches out</h3>
+          <p>Form submission, online booking request, or phone inquiry — what system catches it, and what happens next without human intervention?</p>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-dot">3</div>
+        <div class="step-content">
+          <h3>Intake and pre-visit experience</h3>
+          <p>Are intake forms automated? Does the patient know what to expect before they arrive? Is your EHR connected to your front-of-house workflow?</p>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-dot">4</div>
+        <div class="step-content">
+          <h3>No-show and drop-off handling</h3>
+          <p>What's the automated response when someone misses an appointment or goes quiet after two visits? Or does that just fall through?</p>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-dot">5</div>
+        <div class="step-content">
+          <h3>Visibility into what's actually working</h3>
+          <p>Can you see which sources bring the best patients, your no-show rate, or your reactivation numbers — without pulling it manually?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT SCORECARD -->
+<section class="audit" id="audit-section">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--sage-light)">Your Free Audit</div>
+    <h2>10 questions. Find out where you're leaking patients.</h2>
+    <p class="intro">Answer honestly — this is for your benefit, not a sales qualifier. You'll get an instant score and a breakdown of your highest-priority gaps.</p>
+
+    <div class="audit-form" id="auditForm">
+
+      <div class="audit-q" id="q1">
+        <div class="audit-q-num">Question 01</div>
+        <div class="audit-q-text">Can a new patient book an appointment on your website right now — without calling or emailing your office?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q1', 'yes', 2, this)">Yes, fully online</button>
+          <button class="answer-btn" onclick="selectAnswer('q1', 'partial', 1, this)">Sort of — it's clunky</button>
+          <button class="answer-btn" onclick="selectAnswer('q1', 'no', 0, this)">No, they have to call</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q2">
+        <div class="audit-q-num">Question 02</div>
+        <div class="audit-q-text">If someone submits a contact form or books online at 9pm on a Friday, what happens?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q2', 'auto', 2, this)">They get an automated response immediately</button>
+          <button class="answer-btn" onclick="selectAnswer('q2', 'delay', 1, this)">Someone follows up the next business day</button>
+          <button class="answer-btn" onclick="selectAnswer('q2', 'nothing', 0, this)">Honestly, not sure</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q3">
+        <div class="audit-q-num">Question 03</div>
+        <div class="audit-q-text">Do new patients receive automated appointment reminders before their visit?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q3', 'yes', 2, this)">Yes — text and/or email, automatically</button>
+          <button class="answer-btn" onclick="selectAnswer('q3', 'manual', 1, this)">Someone on staff does it manually</button>
+          <button class="answer-btn" onclick="selectAnswer('q3', 'no', 0, this)">No reminders go out</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q4">
+        <div class="audit-q-num">Question 04</div>
+        <div class="audit-q-text">Are intake forms completed digitally before the first visit, or do patients fill out paper forms when they arrive?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q4', 'digital', 2, this)">Digital — sent automatically after booking</button>
+          <button class="answer-btn" onclick="selectAnswer('q4', 'mixed', 1, this)">We have digital forms but don't send them consistently</button>
+          <button class="answer-btn" onclick="selectAnswer('q4', 'paper', 0, this)">Paper forms at the front desk</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q5">
+        <div class="audit-q-num">Question 05</div>
+        <div class="audit-q-text">When a patient misses an appointment, what's the automatic follow-up process?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q5', 'auto', 2, this)">Automated text/email goes out same day</button>
+          <button class="answer-btn" onclick="selectAnswer('q5', 'manual', 1, this)">Staff calls or texts when they remember</button>
+          <button class="answer-btn" onclick="selectAnswer('q5', 'nothing', 0, this)">Nothing formal — it just gets noted</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q6">
+        <div class="audit-q-num">Question 06</div>
+        <div class="audit-q-text">Do you have an automated reactivation process for patients you haven't seen in 60–90 days?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q6', 'yes', 2, this)">Yes — automated campaigns go out</button>
+          <button class="answer-btn" onclick="selectAnswer('q6', 'ad-hoc', 1, this)">We do it manually sometimes</button>
+          <button class="answer-btn" onclick="selectAnswer('q6', 'no', 0, this)">No — patients have to reach back out to us</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q7">
+        <div class="audit-q-num">Question 07</div>
+        <div class="audit-q-text">Can you see your no-show rate, active vs. inactive patient counts, and monthly new patient numbers in a single place — without pulling it manually?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q7', 'yes', 2, this)">Yes — dashboard or report does it automatically</button>
+          <button class="answer-btn" onclick="selectAnswer('q7', 'partial', 1, this)">I can find it but it takes effort</button>
+          <button class="answer-btn" onclick="selectAnswer('q7', 'no', 0, this)">No — I mostly go by feel</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q8">
+        <div class="audit-q-num">Question 08</div>
+        <div class="audit-q-text">After a patient's visit, do they automatically receive a review request or care plan follow-up message?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q8', 'yes', 2, this)">Yes — goes out automatically</button>
+          <button class="answer-btn" onclick="selectAnswer('q8', 'sometimes', 1, this)">Sometimes, when staff remembers</button>
+          <button class="answer-btn" onclick="selectAnswer('q8', 'no', 0, this)">No post-visit follow-up goes out</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q9">
+        <div class="audit-q-num">Question 09</div>
+        <div class="audit-q-text">Do you know which marketing channel (Google, referrals, social, etc.) brings in the most patients who actually stay?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q9', 'yes', 2, this)">Yes — tracked and visible</button>
+          <button class="answer-btn" onclick="selectAnswer('q9', 'guess', 1, this)">I have a general sense but not real data</button>
+          <button class="answer-btn" onclick="selectAnswer('q9', 'no', 0, this)">No — I don't track that</button>
+        </div>
+      </div>
+
+      <div class="audit-q" id="q10">
+        <div class="audit-q-num">Question 10</div>
+        <div class="audit-q-text">How much of your patient communication — reminders, follow-ups, reactivation, intake — currently runs without anyone on your staff initiating it?</div>
+        <div class="answer-options">
+          <button class="answer-btn" onclick="selectAnswer('q10', 'most', 2, this)">Most of it — it runs itself</button>
+          <button class="answer-btn" onclick="selectAnswer('q10', 'some', 1, this)">Some — it's a mix</button>
+          <button class="answer-btn" onclick="selectAnswer('q10', 'none', 0, this)">Almost none — staff drives everything</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="audit-submit" id="auditSubmit">
+      <button class="cta-primary" onclick="showResults()" style="margin-top:8px;">See My Results →</button>
+    </div>
+
+    <div class="results-panel" id="resultsPanel">
+      <div class="score-display">
+        <div class="score-number" id="scoreNumber">—</div>
+        <div class="score-label">out of 20 points</div>
+        <div class="score-interpretation" id="scoreInterpretation">—</div>
+        <div class="score-detail" id="scoreDetail">—</div>
+      </div>
+      <div class="gap-list" id="gapList"></div>
+      <div style="margin-top:40px;padding:28px;background:rgba(122,158,126,0.12);border-left:3px solid var(--sage);">
+        <p style="font-size:15px;color:var(--cream);line-height:1.7;font-weight:300;">
+          Want to walk through what these gaps look like in your specific practice — and what it would take to close them? 
+          <strong style="color:var(--sage-light);font-weight:500;">No pitch. No package. Just a real conversation about what you're working with.</strong>
+        </p>
+        <button class="cta-primary" style="margin-top:20px;" onclick="document.getElementById('cta-form').scrollIntoView({behavior:'smooth'})">
+          Let's Talk Through It →
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="cta-copy">
+      <h2>Not ready to talk yet? That's fine too.</h2>
+      <p>Drop your name and email and I'll send you a short breakdown of what a fully automated patient acquisition system looks like for an independent practice — no software pitch, just the framework. You can decide what to do with it.</p>
+    </div>
+    <div class="cta-box" id="cta-form">
+      <h2 class="no-pitch2">Get the framework sent to you. No Call required</h2>
+Submit your information to access the framework
+<iframe data-tally-src="https://tally.so/embed/kd08Mj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="566" frameborder="0" marginheight="0" marginwidth="0" title="Framework form online"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+      <p class="no-pitch">No sales call. No follow-up pitch. Just the resource.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-text">
+        <div class="section-label">Who built this</div>
+        <h2>Quinita — QAMW Consulting</h2>
+        <p>I'm a systems and data consultant based in Seattle. I work with small business owners who are running on good instincts but missing the infrastructure to back them up.</p>
+        <p>Back in 2019, I was doing systems and business intelligence consulting for practice management companies — responsible for making sure their annual planning processes were <strong>automated on the backend</strong> for independent practices. I was on the inside of how well-run practices are supposed to operate.</p>
+        <p>Now I work on the other end of that equation — helping independent practice owners build the systems that used to only exist inside large management groups. You don't need to be part of a franchise or buying group to run a connected, automated practice.</p>
+        <p>My approach: I look at what you actually have before recommending anything new. Most practices don't need more software. They need what they already own to work together.</p>
+      </div>
+      <div class="about-creds">
+        <div class="cred-item">
+          <div class="cred-dot"></div>
+          <p><strong>Practice management background</strong>BI & systems consulting for practice management companies — annual planning automation for independent practices</p>
+        </div>
+        <div class="cred-item">
+          <div class="cred-dot"></div>
+          <p><strong>MSBA — UW Tacoma</strong>Systems integration, BI, and analytics strategy</p>
+        </div>
+        <div class="cred-item">
+          <div class="cred-dot"></div>
+          <p><strong>14+ years in BI & systems</strong>Healthcare, field services, nonprofit, and SMB</p>
+        </div>
+        <div class="cred-item">
+          <div class="cred-dot"></div>
+          <p><strong>Keragon partner</strong>HIPAA-compliant automation for healthcare workflows</p>
+        </div>
+        <div class="cred-item">
+          <div class="cred-dot"></div>
+          <p><strong>Systems Reality Check</strong>Immersive diagnostic methodology — no assumptions, no shortcuts</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>QAMW Consulting</span> · Seattle, WA · qamwconsulting.com</p>
+</footer>
+
+<script>
+  const answers = {};
+  const scores = {};
+  let answeredCount = 0;
+
+  const gaps = {
+    q1: { label: "Online booking friction", detail: "No self-serve booking means every new patient requires a human touchpoint. You're losing people who won't wait." },
+    q2: { label: "After-hours inquiry handling", detail: "Leads submitted outside business hours with no automated response go cold fast. A same-day auto-reply is the minimum." },
+    q3: { label: "Appointment reminders", detail: "Manual reminders are inconsistent and staff-dependent. Automated reminders reduce no-shows without adding workload." },
+    q4: { label: "Digital intake flow", detail: "Paper intake at the front desk creates delays, data entry work, and a worse first impression. Digital forms should go out automatically post-booking." },
+    q5: { label: "No-show recovery", detail: "Missed appointments without same-day automated follow-up are often lost patients. A simple sequence recovers a meaningful percentage." },
+    q6: { label: "Patient reactivation", detail: "Inactive patients who haven't heard from you in 60–90 days are low-hanging revenue. Automated reactivation campaigns run without staff effort." },
+    q7: { label: "Practice visibility dashboard", detail: "If you're operating by feel, you're reacting instead of managing. Core metrics should be visible in under 60 seconds." },
+    q8: { label: "Post-visit follow-up", detail: "Review requests and care plan reminders sent automatically after visits improve retention and online reputation without anyone remembering to do it." },
+    q9: { label: "Patient acquisition tracking", detail: "Not knowing which sources bring your best patients means you can't double down on what's working or cut what isn't." },
+    q10: { label: "Overall automation coverage", detail: "If your staff is the system, you have a fragile practice. The goal is a workflow that runs itself for the predictable stuff so your team handles the human stuff." }
+  };
+
+  function selectAnswer(qId, value, score, btn) {
+    const wasAnswered = answers[qId] !== undefined;
+    
+    const options = btn.parentElement.querySelectorAll('.answer-btn');
+    options.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    
+    document.getElementById(qId).classList.add('answered');
+    
+    if (!wasAnswered) answeredCount++;
+    answers[qId] = value;
+    scores[qId] = score;
+
+    if (answeredCount >= 10) {
+      document.getElementById('auditSubmit').classList.add('visible');
+    }
+  }
+
+  function showResults() {
+    const total = Object.values(scores).reduce((a, b) => a + b, 0);
+    const max = 20;
+    
+    document.getElementById('scoreNumber').textContent = total;
+    
+    let interpretation, detail;
+    if (total >= 16) {
+      interpretation = "Your systems are largely in place.";
+      detail = "You've built a solid foundation. There may still be gaps worth tightening — especially around visibility and reactivation — but you're ahead of most independent practices.";
+    } else if (total >= 10) {
+      interpretation = "You have pieces, but they're not connected.";
+      detail = "Some automation is in place, but the patient journey has gaps where leads go cold, patients fall off, or staff is picking up work that systems should handle. This is the most common position — and the most fixable.";
+    } else {
+      interpretation = "Your practice is running mostly on manual effort.";
+      detail = "Almost every touchpoint in your patient journey depends on someone remembering to do something. That's not sustainable — and it's costing you new patients and lost reactivations every week without you necessarily seeing it.";
+    }
+
+    document.getElementById('scoreInterpretation').textContent = interpretation;
+    document.getElementById('scoreDetail').textContent = detail;
+
+    const gapList = document.getElementById('gapList');
+    gapList.innerHTML = '';
+
+    const lowScoreQs = Object.entries(scores)
+      .filter(([q, s]) => s < 2)
+      .sort(([,a],[,b]) => a - b)
+      .slice(0, 4);
+
+    if (lowScoreQs.length > 0) {
+      const header = document.createElement('p');
+      header.style.cssText = 'font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4);margin-bottom:8px;font-weight:600;';
+      header.textContent = 'Your highest-priority gaps:';
+      gapList.appendChild(header);
+
+      lowScoreQs.forEach(([qId]) => {
+        const gap = gaps[qId];
+        const item = document.createElement('div');
+        item.className = 'gap-item';
+        item.innerHTML = `<strong>${gap.label}</strong>${gap.detail}`;
+        gapList.appendChild(item);
+      });
+    }
+
+    document.getElementById('auditSubmit').style.display = 'none';
+    document.getElementById('resultsPanel').classList.add('visible');
+    document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function handleSubmit() {
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    if (!name || !email) { alert('Name and email are required.'); return; }
+    const box = document.querySelector('.cta-box');
+    box.innerHTML = `<p style="color:var(--sage-light);font-family:'DM Serif Display',serif;font-size:22px;line-height:1.4;">Got it, ${name.split(' ')[0]}.<br><span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(245,240,232,0.6);">Check your inbox — I'll keep it short and useful.</span></p>`;
+  }
+</script>
+</body>
+</html>
