@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Field Services — Systems & Automation for Construction and Trades</title>
+<meta name="description" content="Field service and construction companies hire us to fix their operations before adding AI. We clean up the systems, connect the tools, and build reporting that actually works.">
+<meta name="keywords" content="field service AI, construction operations, ServiceTitan integration, field service systems, operations consultant, construction reporting, AI readiness, Quinita Whitfield, QAMW Consulting">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --bg-mid: #141414;
+  --bg-light: #f5f1eb;
+  --accent: #e8521a;
+  --accent-lt: #f0683a;
+  --accent-dim: rgba(232,82,26,0.25);
+  --text-primary: #f0ece4;
+  --text-muted: #7a7570;
+  --border: #242424;
+  --white: #f5f1eb;
+  --black: #0a0a0a;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px; height: 68px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 1.05rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-primary); text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.75rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta {
+  background: var(--accent); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.7rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--accent-lt); }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 148px 52px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  background: var(--bg-dark);
+  border-bottom: 1px solid var(--border);
+}
+.eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 24px;
+}
+.eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 24px;
+}
+.hero h1 span { color: var(--accent); }
+.hero p {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 40px;
+  line-height: 1.75;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--accent); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 14px 30px; border-radius: 3px;
+  text-decoration: none; transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--accent-lt); }
+.btn-ghost {
+  border: 1px solid #333; color: var(--text-muted);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 14px 30px; border-radius: 3px;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* hero right — stat grid */
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+}
+.stat-card {
+  background: var(--bg-card);
+  padding: 36px 30px;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+}
+.stat-card.accent-card { background: var(--accent); }
+.stat-card.accent-card .sc-num,
+.stat-card.accent-card .sc-label { color: var(--white); }
+.sc-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.sc-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  background: var(--bg-light);
+  padding: 36px 52px;
+  display: flex; align-items: center;
+  gap: 48px; flex-wrap: wrap;
+  border-bottom: 1px solid #e0dbd3;
+}
+.trust-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: #888; white-space: nowrap;
+}
+.trust-items {
+  display: flex; gap: 40px; flex-wrap: wrap; align-items: center;
+}
+.trust-item {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #555;
+}
+
+/* ─── PROBLEM SECTION ─── */
+.problem-section {
+  background: var(--bg-light);
+  padding: 100px 52px;
+}
+.problem-section .section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.problem-section .section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.problem-section h2 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--black); margin-bottom: 16px;
+  max-width: 720px;
+}
+.problem-section .lead {
+  font-size: 1rem; color: #555;
+  max-width: 600px; margin-bottom: 60px;
+  line-height: 1.75;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: #d8d3cc;
+}
+.problem-card {
+  background: var(--white);
+  padding: 36px 32px;
+  transition: background 0.2s, color 0.2s;
+  position: relative; overflow: hidden;
+  cursor: default;
+}
+.problem-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 0; height: 3px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.problem-card:hover::after { width: 100%; }
+.problem-card:hover { background: var(--black); }
+.problem-card:hover .pc-num { color: var(--accent); }
+.problem-card:hover .pc-title { color: var(--white); }
+.problem-card:hover .pc-body { color: #888; }
+.pc-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #bbb; margin-bottom: 20px;
+  transition: color 0.2s;
+}
+.pc-title {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--black); margin-bottom: 12px;
+  line-height: 1.3; transition: color 0.2s;
+}
+.pc-body {
+  font-size: 0.88rem; color: #666;
+  line-height: 1.7; transition: color 0.2s;
+}
+
+/* ─── SERVICES SECTION ─── */
+.services-section {
+  background: var(--bg-dark);
+  padding: 100px 52px;
+  border-bottom: 1px solid var(--border);
+}
+.services-section .section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.services-section .section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.services-section h2 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  margin-bottom: 16px; max-width: 720px;
+}
+.services-section .lead {
+  font-size: 1rem; color: var(--text-muted);
+  max-width: 600px; margin-bottom: 60px;
+  line-height: 1.75;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px; background: var(--border);
+  margin-bottom: 40px;
+}
+.service-card {
+  background: var(--bg-card);
+  padding: 40px 36px;
+  display: flex; gap: 24px;
+  align-items: flex-start;
+  transition: background 0.2s;
+}
+.service-card:hover { background: #1f1f1f; }
+.service-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: var(--accent-dim);
+  border: 1px solid rgba(232,82,26,0.35);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.service-content h3 {
+  font-size: 1rem; font-weight: 700;
+  margin-bottom: 10px; line-height: 1.3;
+}
+.service-content p {
+  font-size: 0.88rem; color: var(--text-muted);
+  line-height: 1.7;
+}
+.tools-used {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;
+}
+.tool-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: #666; border-radius: 2px;
+}
+.tools-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px; align-items: center;
+  padding: 32px 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.tools-row-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 12px;
+}
+.tools-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+
+/* ─── TOOLS SECTION ─── */
+.tools-section {
+  background: var(--bg-card);
+  padding: 56px 52px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── CASE STUDIES ─── */
+.cases-section {
+  background: var(--bg-light);
+  padding: 100px 52px;
+}
+.cases-section .section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.cases-section .section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.cases-section h2 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--black); margin-bottom: 60px;
+}
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px; background: #d8d3cc;
+}
+.case-card {
+  background: var(--white);
+  padding: 48px 40px;
+}
+.case-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 24px;
+}
+.case-tag::before {
+  content: ''; display: block; width: 16px; height: 1px;
+  background: var(--accent);
+}
+.case-card h3 {
+  font-size: 1.5rem; font-weight: 800;
+  letter-spacing: -0.02em; color: var(--black);
+  margin-bottom: 6px; line-height: 1.2;
+}
+.case-client {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #aaa; margin-bottom: 20px;
+}
+.case-card p {
+  font-size: 0.92rem; color: #555;
+  line-height: 1.75; margin-bottom: 28px;
+}
+.case-result {
+  background: var(--black);
+  padding: 20px 22px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 20px;
+}
+.case-result-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.case-result-text {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--white); line-height: 1.4;
+}
+.case-quote {
+  font-size: 0.88rem; color: #666;
+  font-style: italic; line-height: 1.6;
+  border-top: 1px solid #e8e3db;
+  padding-top: 20px; margin-top: 4px;
+}
+.case-quote cite {
+  display: block; margin-top: 8px;
+  font-style: normal; font-weight: 600;
+  font-size: 0.8rem; color: #999;
+}
+
+/* ─── ABOUT ─── */
+.about-section {
+  background: var(--bg-dark);
+  padding: 100px 52px;
+  border-bottom: 1px solid var(--border);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.about-section .section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.about-section .section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.about-section h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  margin-bottom: 24px; line-height: 1.15;
+}
+.about-section p {
+  font-size: 0.95rem; color: var(--text-muted);
+  line-height: 1.8; margin-bottom: 18px;
+}
+.about-creds {
+  display: flex; flex-direction: column; gap: 2px;
+  margin-top: 36px;
+  background: var(--border);
+}
+.cred-row {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 20px; align-items: start;
+  background: var(--bg-card);
+  padding: 18px 20px;
+}
+.cred-icon {
+  font-size: 1rem; margin-top: 2px;
+}
+.cred-title {
+  font-size: 0.88rem; font-weight: 600;
+  margin-bottom: 2px;
+}
+.cred-sub {
+  font-size: 0.78rem; color: var(--text-muted);
+}
+.about-right {
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--border);
+}
+.about-stat {
+  background: var(--bg-card);
+  padding: 28px 28px;
+}
+.about-stat .num {
+  font-size: 2.4rem; font-weight: 800;
+  letter-spacing: -0.03em; color: var(--accent);
+  line-height: 1; margin-bottom: 6px;
+}
+.about-stat .lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.about-stat .detail {
+  font-size: 0.82rem; color: #444;
+  margin-top: 8px; line-height: 1.6;
+}
+
+/* ─── TOOLS SECTION (AI) ─── */
+.ai-tools-section {
+  background: var(--bg-light);
+  padding: 100px 52px;
+}
+.ai-tools-section .section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.ai-tools-section .section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.ai-tools-section h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--black); margin-bottom: 12px;
+}
+.ai-tools-section .lead {
+  font-size: 0.95rem; color: #555;
+  max-width: 580px; margin-bottom: 56px; line-height: 1.75;
+}
+.tools-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px; background: #d8d3cc;
+}
+.tool-card {
+  background: var(--white);
+  padding: 40px 36px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.tool-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 0; height: 3px;
+  background: var(--accent); transition: width 0.3s ease;
+}
+.tool-card:hover::after { width: 100%; }
+.tool-card-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.tool-card h3 {
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--black); margin-bottom: 10px;
+  line-height: 1.25;
+}
+.tool-card p {
+  font-size: 0.88rem; color: #666;
+  line-height: 1.7; flex: 1;
+  margin-bottom: 24px;
+}
+.tool-card-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none;
+  transition: gap 0.2s;
+}
+.tool-card-link:hover { gap: 12px; }
+
+/* ─── BOOKING ─── */
+.booking-section {
+  background: var(--bg-dark);
+  padding: 100px 52px;
+  border-bottom: 1px solid var(--border);
+}
+.booking-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.booking-section .section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.booking-section .section-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.booking-section h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  margin-bottom: 20px; line-height: 1.15;
+}
+.booking-section p {
+  font-size: 0.95rem; color: var(--text-muted);
+  line-height: 1.8; margin-bottom: 16px;
+}
+.booking-cta-block {
+  margin-top: 36px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.booking-right {
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--border);
+}
+.booking-item {
+  background: var(--bg-card);
+  padding: 24px 26px;
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.booking-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--accent); line-height: 1;
+  flex-shrink: 0; padding-top: 2px;
+}
+.booking-item-title {
+  font-size: 0.9rem; font-weight: 700;
+  margin-bottom: 4px;
+}
+.booking-item-body {
+  font-size: 0.82rem; color: var(--text-muted);
+  line-height: 1.65;
+}
+.fit-check {
+  background: var(--bg-mid);
+  border: 1px solid var(--accent-dim);
+  padding: 24px 26px;
+  margin-top: 2px;
+}
+.fit-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.fit-list {
+  list-style: none; display: flex; flex-direction: column; gap: 8px;
+}
+.fit-list li {
+  font-size: 0.85rem; color: var(--text-muted);
+  display: flex; gap: 10px; align-items: flex-start;
+  line-height: 1.5;
+}
+.fit-list li::before {
+  content: '✓'; color: var(--accent);
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black);
+  padding: 52px 52px 32px;
+  border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-brand-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.95rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-primary); margin-bottom: 10px;
+}
+.footer-brand-name span { color: var(--accent); }
+.footer-tagline {
+  font-size: 0.82rem; color: var(--text-muted);
+  line-height: 1.65; max-width: 260px;
+}
+.footer-col-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 16px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 0.85rem; color: var(--text-muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-primary); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy {
+  font-size: 0.75rem; color: #333;
+}
+.footer-credit {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2a2a2a;
+}
+.footer-credit span { color: var(--accent); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 120px 24px 80px; gap: 48px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .trust-bar { padding: 28px 24px; gap: 24px; }
+  .problem-section, .services-section, .cases-section,
+  .about-section, .ai-tools-section, .booking-section { padding: 70px 24px; }
+  .problem-grid, .services-grid, .case-grid,
+  .tools-card-grid { grid-template-columns: 1fr; }
+  .about-grid, .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+  footer { padding: 48px 24px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>AI</span> For Field Services</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Results</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#tools">Free Tools</a></li>
+    <li><a href="#booking">Book a Call</a></li>
+  </ul>
+  <a class="nav-cta" href="#booking">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <div class="eyebrow">Field Service & Construction Systems</div>
+    <h1>AI Won't Fix a <span>Broken Operation</span></h1>
+    <p>Most field service companies aren't ready for AI — not because the tech is too complex, but because the systems feeding it are a mess. We fix that first.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#booking">Book a Discovery Call</a>
+      <a class="btn-ghost" href="/data-systems-audit.html">Free Systems Audit</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card accent-card">
+      <div class="sc-num">$18K</div>
+      <div class="sc-label">Booked Without the Owner Touching a Phone</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">13+</div>
+      <div class="sc-label">Years in Systems, BI & Operations</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">100%</div>
+      <div class="sc-label">Remote — Puget Sound & Pacific Northwest Focus</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">2 Wks</div>
+      <div class="sc-label">From Audit Kickoff to First Real Report</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-label">Works With</span>
+  <div class="trust-items">
+    <span class="trust-item">ServiceTitan</span>
+    <span class="trust-item">HouseCall Pro</span>
+    <span class="trust-item">Buildertrend</span>
+    <span class="trust-item">QuickBooks</span>
+    <span class="trust-item">Power BI</span>
+    <span class="trust-item">n8n</span>
+    <span class="trust-item">GoHighLevel</span>
+    <span class="trust-item">Zapier</span>
+  </div>
+</div>
+
+<!-- PROBLEM SECTION -->
+<section class="problem-section" id="problem">
+  <div class="section-eyebrow">The Real Problem</div>
+  <h2>Your Tools Aren't the Issue. Your Systems Are.</h2>
+  <p class="lead">Field service and construction companies have great software. What they're missing is the layer that connects it — so data flows, reports are trusted, and the team isn't rebuilding spreadsheets every Monday morning.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="pc-num">01</div>
+      <div class="pc-title">Data Lives in Three Places and None of Them Match</div>
+      <div class="pc-body">ServiceTitan says one thing. QuickBooks says another. The spreadsheet your ops manager built says something else entirely. Nobody knows which number to trust — so nobody uses any of them.</div>
+    </div>
+    <div class="problem-card">
+      <div class="pc-num">02</div>
+      <div class="pc-title">You're Hiring People to Fill the Gap Between Systems</div>
+      <div class="pc-body">When a job post lists ServiceTitan, Buildertrend, QuickBooks, and Excel in the requirements, that's not a skills requirement — that's a systems problem that nobody's been willing to name yet.</div>
+    </div>
+    <div class="problem-card">
+      <div class="pc-num">03</div>
+      <div class="pc-title">You Tried AI and It Didn't Stick</div>
+      <div class="pc-body">The chatbot didn't have the right info. The automation broke after two weeks. The dashboard looked good until someone questioned the numbers. AI doesn't fix broken data — it just makes bad data faster.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services-section" id="services">
+  <div class="section-eyebrow">What We Do</div>
+  <h2>Systems Work That Makes Everything Else Easier</h2>
+  <p class="lead">We're not selling software. We're the people who come in, figure out why things are broken, fix the foundation, and build on top of it — so automation and AI actually hold.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-content">
+        <h3>Systems Reality Check</h3>
+        <p>A flat-rate diagnostic of your current tech stack, data quality, and reporting gaps. You walk away with a clear picture of what's actually broken and what it's costing you — before you spend another dollar fixing the wrong thing.</p>
+        <div class="tools-used">
+          <span class="tool-tag">2-Week Engagement</span>
+          <span class="tool-tag">Flat Rate</span>
+          <span class="tool-tag">No Fluff</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <div class="service-content">
+        <h3>AI Automation & Booking Agents</h3>
+        <p>For field service companies that miss calls on job sites — we build AI text agents that respond to missed calls, qualify leads, and book appointments automatically. No human needed. We've had a $18K project booked with zero intervention.</p>
+        <div class="tools-used">
+          <span class="tool-tag">GoHighLevel</span>
+          <span class="tool-tag">n8n</span>
+          <span class="tool-tag">HouseCall Pro</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-content">
+        <h3>Reporting & Dashboards</h3>
+        <p>Most field service companies make decisions from memory or gut feel because their reports take too long or nobody trusts them. We build Power BI dashboards that pull from your actual systems — not a copy of them.</p>
+        <div class="tools-used">
+          <span class="tool-tag">Power BI</span>
+          <span class="tool-tag">Google Sheets</span>
+          <span class="tool-tag">ServiceTitan</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔗</div>
+      <div class="service-content">
+        <h3>CRM & Tool Integration</h3>
+        <p>If your team is copy-pasting between systems, reconciling data by hand, or living in spreadsheets that should be automated — that's a solvable problem. We connect your tools so data flows where it's supposed to go.</p>
+        <div class="tools-used">
+          <span class="tool-tag">Zapier</span>
+          <span class="tool-tag">Power Automate</span>
+          <span class="tool-tag">API Connections</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases-section" id="work">
+  <div class="section-eyebrow">Real Results</div>
+  <h2>From Missed Calls to Booked Jobs. From Survey Data to Executive Decisions.</h2>
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-tag">Construction / Field Service</div>
+      <h3>$18K Project Booked Without the Owner Touching a Phone</h3>
+      <div class="case-client">Coho Construction — AITextsBack</div>
+      <p>A solo contractor was losing business every time he went on a job site. Missed calls meant missed revenue — and after losing his business partner, he had no one to cover the phones. The problem wasn't motivation. It was infrastructure.</p>
+      <p>We deployed an AI text agent connected to HouseCall Pro that responded to every missed call, answered questions, and booked appointments automatically. No training required. No extra hire. It just ran.</p>
+      <div class="case-result">
+        <div class="case-result-label">First Booking</div>
+        <div class="case-result-text">$18,000 project — booked and confirmed while the owner was on a job site. He found it on his calendar.</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Education / Nonprofit Analytics</div>
+      <h3>Survey Data Turned Into an Actual Action Plan</h3>
+      <div class="case-client">R3 Academy</div>
+      <p>R3 Academy was collecting student feedback every term — and doing nothing with it because the data sat in raw survey form with no way to act on it. Leadership knew something was in there. They just couldn't get to it.</p>
+      <p>We built a sentiment analysis solution that processed incoming survey responses, identified patterns, and output a plain-language next-steps report for the team — alongside a full Power BI dashboard with trends, insights, and supporting data.</p>
+      <div class="case-result">
+        <div class="case-result-label">Outcome</div>
+        <div class="case-result-text">From raw survey data to executive-ready action report and live dashboard — delivered on time.</div>
+      </div>
+      <div class="case-quote">
+        "As usual, you have blown it out of the water. Thank you so absolutely much for your amazing work."
+        <cite>— Juan Ramos, CEO, R3 Academy</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-eyebrow">About the Work</div>
+      <h2>Systems Thinking for People Who Run Real Operations</h2>
+      <p>I'm Quinita Whitfield, founder of QAMW Consulting. I've spent 13 years building reporting infrastructure, integrating disconnected tools, and fixing the data problems that stop companies from growing — across construction, home services, finance, healthcare, and nonprofits.</p>
+      <p>My business partner Khalil Hayes brings sales and real estate operations experience to the table. We're not a large agency. We're two people who go deep — and we stay until the work actually holds.</p>
+      <p>The approach is simple: I don't come in with a stack of recommendations and leave. I find the root problem, build the fix, and make sure your team can run it without me after I'm gone.</p>
+      <div class="about-creds">
+        <div class="cred-row">
+          <div class="cred-icon">🎓</div>
+          <div>
+            <div class="cred-title">M.S. Business Analytics — University of Washington</div>
+            <div class="cred-sub">Data systems, BI strategy, analytics decision-making</div>
+          </div>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon">📋</div>
+          <div>
+            <div class="cred-title">Microsoft Certified Power BI Data Analyst (DA-100)</div>
+            <div class="cred-sub">Enterprise BI architecture, semantic modeling, DAX</div>
+          </div>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon">🏢</div>
+          <div>
+            <div class="cred-title">Enterprise Background: VEHO, Launch Consulting, Teradata, Columbia Sportswear</div>
+            <div class="cred-sub">Built BI infrastructure for $50M+ revenue orgs before going independent</div>
+          </div>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon">📍</div>
+          <div>
+            <div class="cred-title">Based in Seattle — Puget Sound Service Area</div>
+            <div class="cred-sub">Remote-first, available across the Pacific Northwest</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="about-right">
+        <div class="about-stat">
+          <div class="num">13+</div>
+          <div class="lbl">Years in Systems & BI</div>
+          <div class="detail">Across construction, field service, finance, healthcare, and nonprofits. Enterprise experience applied to SMB problems.</div>
+        </div>
+        <div class="about-stat">
+          <div class="num">$104K</div>
+          <div class="lbl">Annual Savings — One Automation</div>
+          <div class="detail">Replaced a 12-hour weekly manual reporting process at VEHO with an automated Power BI workflow.</div>
+        </div>
+        <div class="about-stat">
+          <div class="num">200+</div>
+          <div class="lbl">Professionals Trained on Power BI</div>
+          <div class="detail">Healthcare, finance, retail, and manufacturing — building teams that own their own reporting.</div>
+        </div>
+        <div class="about-stat">
+          <div class="num">500+</div>
+          <div class="lbl">Enterprise Clients via Microsoft Templates</div>
+          <div class="detail">Power BI templates built for Microsoft's Viva Insights product, deployed across enterprise clients worldwide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE TOOLS -->
+<section class="ai-tools-section" id="tools">
+  <div class="section-eyebrow">Free Tools</div>
+  <h2>Start Here Before You Spend a Dollar</h2>
+  <p class="lead">Two tools built specifically for field service and construction companies. Use them on your own, or bring the results to a discovery call — either way, you'll leave with more clarity than you started with.</p>
+  <div class="tools-card-grid">
+    <div class="tool-card">
+      <div class="tool-card-tag">Lead Analyzer</div>
+      <h3>AI-Powered Job Post Signal Analyzer</h3>
+      <p>Paste a LinkedIn job description and get back a breakdown of what it signals about that company's operational pain — in plain language. Built for founders and ops leaders who want to spot companies in systems trouble before anyone else does.</p>
+      <a class="tool-card-link" href="/lead-analyzer.html">Open the Analyzer →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-card-tag">Systems Audit</div>
+      <h3>Data Systems Audit Tool</h3>
+      <p>Walk through a structured audit of your current systems — tools, data quality, reporting gaps, and automation readiness. Get a plain-English summary of where your operation stands and what's worth fixing first.</p>
+      <a class="tool-card-link" href="/data-systems-audit.html">Start the Audit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking-section" id="booking">
+  <div class="booking-inner">
+    <div>
+      <div class="section-eyebrow">Book a Call</div>
+      <h2>Let's Talk About What's Actually Broken</h2>
+      <p>A discovery call is 20–30 minutes. No pitch deck. No upsell sequence. I'll ask about your stack, your pain points, and what you've already tried — and I'll tell you honestly whether we can help and how.</p>
+      <p>If it makes sense to move forward, the next step is the Systems Reality Check — a flat-rate diagnostic that tells you exactly what to fix before you spend money on AI or additional tooling.</p>
+      <div class="booking-cta-block">
+        <a class="btn-primary" href="https://calendly.com/quinita17/linkedin-book-a-call" target="_blank" rel="noopener">Book a Discovery Call</a>
+        <a class="btn-ghost" href="/data-systems-audit.html">Take the Free Audit First</a>
+      </div>
+    </div>
+    <div>
+      <div class="booking-right">
+        <div class="booking-item">
+          <div class="booking-num">01</div>
+          <div>
+            <div class="booking-item-title">Discovery Call (20–30 min)</div>
+            <div class="booking-item-body">We talk through your current setup, what's not working, and what the goal actually is. You leave with clarity on next steps regardless of whether we work together.</div>
+          </div>
+        </div>
+        <div class="booking-item">
+          <div class="booking-num">02</div>
+          <div>
+            <div class="booking-item-title">Systems Reality Check (2 Weeks)</div>
+            <div class="booking-item-body">Flat-rate audit of your tools, data, and reporting. You get a prioritized breakdown of what to fix and a clear picture of what AI-readiness actually looks like for your business.</div>
+          </div>
+        </div>
+        <div class="booking-item">
+          <div class="booking-num">03</div>
+          <div>
+            <div class="booking-item-title">Fractional Systems Integration (Ongoing)</div>
+            <div class="booking-item-body">For companies ready to rebuild — embedded support, build-out, and handoff so your team owns it when we're done. $5K–$8K/month retainer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="fit-check">
+        <div class="fit-label">Good Fit If You Are:</div>
+        <ul class="fit-list">
+          <li>A field service or construction company with $1M+ in annual revenue</li>
+          <li>Running 3+ tools that don't talk to each other</li>
+          <li>Making decisions from spreadsheets instead of live reporting</li>
+          <li>Ready to look honestly at how your operation actually runs</li>
+          <li>Looking for someone who builds and leaves you with something real</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name"><span>AI</span> For Field Services</div>
+      <p class="footer-tagline">A systems-first consulting practice helping field service and construction companies build the foundation that makes AI and automation actually work.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Systems Reality Check</a></li>
+        <li><a href="#services">AI Booking Agents</a></li>
+        <li><a href="#services">Reporting & Dashboards</a></li>
+        <li><a href="#services">CRM & Tool Integration</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Free Tools</div>
+      <ul class="footer-links">
+        <li><a href="/lead-analyzer.html">Lead Analyzer</a></li>
+        <li><a href="/data-systems-audit.html">Data Systems Audit</a></li>
+        <li><a href="#booking">Book a Discovery Call</a></li>
+        <li><a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 QAMW LLC. All rights reserved. Seattle, WA.</span>
+    <span class="footer-credit">Site by <span>QAMW Consulting</span></span>
+  </div>
+</footer>
+
+</body>
+</html>
