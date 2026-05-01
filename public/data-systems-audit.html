@@ -632,24 +632,6 @@ function buildPrompt() {
 .catch(function() {
   renderResults(getFallback(), true);
 });
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    var text = '';
-    for (var i = 0; i < data.content.length; i++) {
-      if (data.content[i].type === 'text') { text += data.content[i].text; }
-    }
-    var result;
-    try {
-      result = JSON.parse(text.trim());
-    } catch(e) {
-      result = getFallback();
-    }
-    renderResults(result, false);
-  })
-  .catch(function() {
-    renderResults(getFallback(), true);
-  });
-}
 
 function getFallback() {
   return {
