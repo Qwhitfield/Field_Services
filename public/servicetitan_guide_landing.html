@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why You Can't Find ServiceTitan People — Free Guide by QAMW Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #111110;
+    --bg-mid: #1c1c1a;
+    --bg-light: #f4f2ed;
+    --bg-offwhite: #eceae4;
+    --accent: #c97b2a;
+    --accent-lt: #e0913e;
+    --accent-dim: rgba(201, 123, 42, 0.15);
+    --text-primary: #f0ede6;
+    --text-muted: #9a9894;
+    --text-dark: #1c1c1a;
+    --text-dark-muted: #5a5854;
+    --border-dark: #252522;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(17,17,16,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 0 52px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .nav-brand span { color: var(--accent); }
+
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid rgba(201,123,42,0.3);
+    padding: 8px 18px;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent);
+    color: var(--bg-dark);
+    border-color: var(--accent);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 140px 52px 100px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ===== DOWNLOAD CARD ===== */
+  .download-card {
+    background: var(--bg-mid);
+    border: 1px solid var(--border-dark);
+    border-top: 3px solid var(--accent);
+    padding: 36px 32px;
+  }
+
+  .download-card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .download-card h3 {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .download-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .download-includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .download-includes li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .download-includes li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+
+  .download-includes li strong { color: var(--text-primary); font-weight: 600; }
+
+  .download-btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: var(--bg-dark);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: 3px;
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .download-btn:hover { background: var(--accent-lt); }
+
+  .download-note {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: #3a3a38;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ===== CONTEXT STRIP ===== */
+  .context-strip {
+    background: var(--bg-mid);
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 60px 52px;
+  }
+
+  .context-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    background: var(--border-dark);
+  }
+
+  .context-block {
+    background: var(--bg-mid);
+    padding: 32px 36px;
+    border-right: 1px solid var(--border-dark);
+  }
+
+  .context-block:last-child { border-right: none; }
+
+  .context-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .context-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .context-copy {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ===== WHY SECTION ===== */
+  .why-section {
+    padding: 100px 52px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+  }
+
+  .why-block {
+    border-top: 1px solid var(--border-dark);
+    padding-top: 24px;
+  }
+
+  .why-block h3 {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .why-block p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ===== GUIDE PREVIEW ===== */
+  .preview-section {
+    background: var(--bg-light);
+    padding: 100px 52px;
+  }
+
+  .preview-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .preview-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .preview-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+
+  .preview-inner h2 {
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    letter-spacing: -0.025em;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+
+  .preview-intro {
+    font-size: 1rem;
+    color: var(--text-dark-muted);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 52px;
+  }
+
+  .chapters {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #ddd9d1;
+  }
+
+  .chapter {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: start;
+    gap: 0;
+    border-bottom: 1px solid #ddd9d1;
+    padding: 0;
+  }
+
+  .chapter:last-child { border-bottom: none; }
+
+  .chapter-num {
+    padding: 20px 0 20px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    align-self: center;
+  }
+
+  .chapter-body {
+    padding: 20px 24px;
+    border-left: 1px solid #ddd9d1;
+  }
+
+  .chapter-title {
+    font-weight: 700;
+    font-size: 0.96rem;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .chapter-desc {
+    font-size: 0.84rem;
+    color: var(--text-dark-muted);
+    line-height: 1.55;
+  }
+
+  .chapter-tag {
+    padding: 20px 20px 20px 0;
+    align-self: center;
+  }
+
+  .tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9a9894;
+    background: var(--bg-offwhite);
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  /* ===== WHO THIS IS FOR ===== */
+  .for-section {
+    padding: 100px 52px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .fit-card {
+    background: var(--bg-mid);
+    border: 1px solid var(--border-dark);
+    padding: 28px 28px;
+  }
+
+  .fit-card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fit-card-label::before {
+    content: '';
+    display: block;
+    width: 12px; height: 1px;
+    background: var(--accent);
+  }
+
+  .fit-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .fit-card ul li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .fit-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 6px; height: 1px;
+    background: var(--accent);
+  }
+
+  /* ===== ABOUT ===== */
+  .about-section {
+    background: var(--bg-mid);
+    border-top: 1px solid var(--border-dark);
+    padding: 80px 52px;
+  }
+
+  .about-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  .about-eyebrow::before {
+    content: '';
+    display: block;
+    width: 16px; height: 1px;
+    background: var(--accent);
+  }
+
+  .about-left h2 {
+    font-weight: 800;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  .about-left p {
+    font-size: 0.93rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .about-creds {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cred {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cred::before {
+    content: '';
+    display: block;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+
+  .about-right {
+    padding-top: 4px;
+  }
+
+  .about-right h3 {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .about-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .about-bullets li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .about-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+
+  /* ===== BOTTOM CTA ===== */
+  .bottom-cta {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-dark);
+    padding: 100px 52px;
+    text-align: center;
+  }
+
+  .bottom-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .bottom-cta h2 {
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .bottom-cta p {
+    font-size: 0.97rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+
+  .btn-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg-dark);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 44px;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--accent-lt); }
+
+  .btn-secondary {
+    display: inline-block;
+    color: var(--text-muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0a0a09;
+    border-top: 1px solid #1a1a18;
+    padding: 28px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #3a3a38;
+  }
+
+  .footer-brand span { color: var(--accent); }
+
+  .footer-note {
+    font-size: 0.7rem;
+    color: #2a2a28;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
+    .context-inner { grid-template-columns: 1fr; }
+    .context-block { border-right: none; border-bottom: 1px solid var(--border-dark); }
+    .why-section, .for-section, .about-section { padding: 60px 24px; }
+    .why-grid, .fit-grid { grid-template-columns: 1fr; gap: 16px; }
+    .preview-section { padding: 60px 24px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .chapter { grid-template-columns: 48px 1fr; }
+    .chapter-tag { display: none; }
+    .bottom-cta { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">QAMW <span>Consulting</span></div>
+  <a class="nav-cta" href="QAMW_ServiceTitan_Hiring_Guide.pdf" download>Download the Guide</a>
+</nav>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Free Guide &nbsp;·&nbsp; Field Service Hiring</div>
+      <h1>Why You Can't Find<br><em>ServiceTitan</em> People.</h1>
+      <p class="hero-sub">You are not losing candidates to competitors. You are losing them to a hiring process designed for the wrong problem. This guide explains what is actually happening — and what to fix before you post the role again.</p>
+      <div class="hero-meta">
+        <span>7-page PDF</span>
+        <span style="color: #333;">·</span>
+        <span>Free download</span>
+        <span style="color: #333;">·</span>
+        <span>No email required</span>
+      </div>
+    </div>
+
+    <div class="download-card">
+      <div class="download-card-label">Free Guide — Instant Download</div>
+      <h3>Why You Can't Find ServiceTitan People</h3>
+      <p>A practical breakdown of the hiring mistakes most field service companies keep repeating — and what to do instead.</p>
+      <ul class="download-includes">
+        <li><strong>The real reason</strong> strong ServiceTitan candidates are hard to find</li>
+        <li><strong>4 hiring mistakes</strong> that keep the role open — and the fix for each</li>
+        <li><strong>The right hire profile</strong> before software knowledge enters the conversation</li>
+        <li><strong>6 interview questions</strong> that surface actual ability</li>
+        <li><strong>A 30-day onboarding plan</strong> structured by role, not by general familiarity</li>
+        <li><strong>The systems root cause</strong> most companies miss entirely</li>
+      </ul>
+      <a class="download-btn" href="QAMW_ServiceTitan_Hiring_Guide.pdf" download>Download the Free Guide (PDF)</a>
+      <div class="download-note">No email. No form. Direct download.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT STRIP -->
+<div class="context-strip">
+  <div class="context-inner">
+    <div class="context-block">
+      <div class="context-num">30+</div>
+      <div class="context-label">Days most roles sit open before a repost</div>
+      <div class="context-copy">The average field service company reposts the same role at least once. The job description changes. The underlying problem does not.</div>
+    </div>
+    <div class="context-block">
+      <div class="context-num">3</div>
+      <div class="context-label">Hiring mistakes that repeat across every posting</div>
+      <div class="context-copy">Most companies make the same three moves every time — and get the same result. This guide names them, explains why they happen, and shows what to do instead.</div>
+    </div>
+    <div class="context-block">
+      <div class="context-num">0</div>
+      <div class="context-label">New tools required to fix your onboarding</div>
+      <div class="context-copy">The fix is not a new training platform or a new ATS. It is a structured approach using what you already have — starting with ServiceTitan's own practice environment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY THIS GUIDE EXISTS -->
+<section class="why-section">
+  <div class="eyebrow">Why This Exists</div>
+  <h2 style="font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.025em; color: var(--text-primary); margin-bottom: 16px;">Hiring problems in field service<br>are usually systems problems.</h2>
+  <p style="font-size: 0.97rem; color: var(--text-muted); line-height: 1.75; max-width: 540px; margin-bottom: 0;">If you have had the same role open twice, the issue probably is not the candidates. Here is what this guide addresses.</p>
+
+  <div class="why-grid">
+    <div class="why-block">
+      <h3>The wrong screening filter</h3>
+      <p>Most job postings screen for ServiceTitan experience. Strong users of that system are already employed and valuable. Hiring for software knowledge alone means you are fishing in the wrong pond — and filtering out the candidates who could actually learn the role.</p>
+    </div>
+    <div class="why-block">
+      <h3>Training that depends on one person</h3>
+      <p>When onboarding lives in one super user's head, every new hire starts from scratch. When that person leaves, the training disappears with them. This guide shows how to document role-specific training once — and use it every time.</p>
+    </div>
+    <div class="why-block">
+      <h3>No structure after the offer is signed</h3>
+      <p>Most new hires are given a login, a shadow week, and a desk. Without a structured 30-day ramp, you cannot tell whether someone is struggling with the software, the workflow, the role, or something else entirely.</p>
+    </div>
+    <div class="why-block">
+      <h3>The underlying system problem</h3>
+      <p>Sometimes the hire is not the problem. A ServiceTitan setup that does not match how the business actually runs will frustrate anyone who sits down to use it — no matter how good they are. This guide addresses that too.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE CONTENTS PREVIEW -->
+<section class="preview-section">
+  <div class="preview-inner">
+    <div class="preview-eyebrow">Inside the Guide</div>
+    <h2>What you will walk away with.</h2>
+    <p class="preview-intro">Seven pages. No fluff. Everything in the guide is designed to be used immediately — not filed away as reference material.</p>
+
+    <div class="chapters">
+      <div class="chapter">
+        <div class="chapter-num">01</div>
+        <div class="chapter-body">
+          <div class="chapter-title">The real problem — why strong candidates are hard to find</div>
+          <div class="chapter-desc">The hiring pool for experienced ServiceTitan users is small because those people are already valuable where they work. The guide reframes what you are actually looking for.</div>
+        </div>
+        <div class="chapter-tag"><div class="tag">Foundation</div></div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-num">02</div>
+        <div class="chapter-body">
+          <div class="chapter-title">4 hiring mistakes — and the fix for each one</div>
+          <div class="chapter-desc">Wrong screening criteria, no training documentation, same onboarding for every role, and no measurement after the hire. These are the four moves that keep the role open.</div>
+        </div>
+        <div class="chapter-tag"><div class="tag">Diagnosis</div></div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-num">03</div>
+        <div class="chapter-body">
+          <div class="chapter-title">The right hire profile — before software knowledge enters the conversation</div>
+          <div class="chapter-desc">Communication, organization, coachability, customer empathy, and technical comfort. What these actually look like in a field service context — and what you can safely deprioritize.</div>
+        </div>
+        <div class="chapter-tag"><div class="tag">Hiring</div></div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-num">04</div>
+        <div class="chapter-body">
+          <div class="chapter-title">6 interview questions that surface real ability</div>
+          <div class="chapter-desc">Stop asking "Do you know ServiceTitan?" Six scenario-based questions that reveal communication, process discipline, and ownership — the things that actually predict performance.</div>
+        </div>
+        <div class="chapter-tag"><div class="tag">Interviewing</div></div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-num">05</div>
+        <div class="chapter-body">
+          <div class="chapter-title">A 30-day onboarding plan — structured by role</div>
+          <div class="chapter-desc">Week-by-week breakdown from foundation to performance review. Designed to be role-specific, not one-size-fits-all. Built to be repeatable without relying on a single trainer.</div>
+        </div>
+        <div class="chapter-tag"><div class="tag">Onboarding</div></div>
+      </div>
+
+      <div class="chapter">
+        <div class="chapter-num">06</div>
+        <div class="chapter-body">
+          <div class="chapter-title">The systems root cause most companies miss</div>
+          <div class="chapter-desc">If the role has been open twice, the problem may not be the candidates. A ServiceTitan setup that does not match real workflows will frustrate anyone. This section explains how to spot it.</div>
+        </div>
+        <div class="chapter-tag"><div class="tag">Root Cause</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="for-section">
+  <div class="eyebrow">Who This Is For</div>
+  <h2 style="font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -0.025em; color: var(--text-primary); margin-bottom: 14px;">Right fit. Wrong fit.</h2>
+  <p style="font-size: 0.93rem; color: var(--text-muted); line-height: 1.7; max-width: 480px;">This guide is specific to field service and home services operations. It is written for the people managing these decisions, not for HR generalists.</p>
+
+  <div class="fit-grid">
+    <div class="fit-card">
+      <div class="fit-card-label">This is for you if</div>
+      <ul>
+        <li>You run a field service or home services business using ServiceTitan</li>
+        <li>You have had a CSR, dispatcher, or coordinator role open for 30+ days</li>
+        <li>You have hired for this role before and the person did not last</li>
+        <li>Your onboarding is primarily verbal or shadow-based</li>
+        <li>You are the owner or ops lead making the hiring decision directly</li>
+        <li>You want to stop solving the same problem every 6 months</li>
+      </ul>
+    </div>
+    <div class="fit-card">
+      <div class="fit-card-label">This is not for you if</div>
+      <ul>
+        <li>You have a dedicated HR team handling all recruiting end-to-end</li>
+        <li>You are not using ServiceTitan as your primary field service platform</li>
+        <li>You are hiring at a volume that requires an ATS and sourcing infrastructure</li>
+        <li>You want a generic interview template that works for any industry</li>
+        <li>You are looking for software recommendations or recruiting tool comparisons</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="about-eyebrow">About the Author</div>
+      <h2>Quinita Whitfield</h2>
+      <p>I am a systems and data consultant based in South Seattle. I work with field service and construction SMBs to fix what is actually broken in their operations — before they buy new software, hire around the problem, or implement something that does not stick.</p>
+      <p>This guide comes from real engagements with service businesses where the hiring problem turned out to be downstream of a systems problem. The methodology is the same one I use in a Systems Reality Check — find the root cause, fix that first.</p>
+      <div class="about-creds">
+        <div class="cred">MSBA — University of Washington Tacoma</div>
+        <div class="cred">14+ years in BI, systems integration, and ops</div>
+        <div class="cred">Experience with ServiceTitan, HubSpot, BuilderTrend</div>
+        <div class="cred">Founder — QAMW Consulting</div>
+      </div>
+    </div>
+    <div class="about-right">
+      <h3>What I actually do</h3>
+      <ul class="about-bullets">
+        <li>Map what is actually happening across your tools, workflows, and data — not what you think is happening</li>
+        <li>Identify the root cause of ops problems before prescribing a fix</li>
+        <li>Build integrations, automations, and reporting systems using tools you already own</li>
+        <li>Train your team on what was built so it keeps working when I am not there</li>
+        <li>Work with field service companies, contractors, and home services businesses specifically</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <div class="bottom-cta-inner">
+    <h2>Start with the guide.</h2>
+    <p>If what you read surfaces a bigger systems question — about ServiceTitan setup, workflow structure, or why the data is not trustworthy — that is a conversation worth having. The evaluation is 20 minutes and free.</p>
+    <div class="btn-stack">
+      <a class="btn-primary" href="QAMW_ServiceTitan_Hiring_Guide.pdf" download>Download the Free Guide</a>
+      <a class="btn-secondary" href="https://calendly.com/quinita17/linkedin-book-a-call" target="_blank">Or book a 20-min system evaluation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">QAMW <span>Consulting</span> &nbsp;·&nbsp; qamwconsulting.com</div>
+  <div class="footer-note">Systems, Data &amp; AI for Field Service SMBs</div>
+</footer>
+
+</body>
+</html>
